@@ -5,7 +5,7 @@
 class ChannelMap {
 public:
   ChannelMap();
-  ChannelMap *ChannelMapInit();
+  static ChannelMap *ChannelMapInit();
   void ChannelMapClear(ChannelMap *map);
 
 private:
