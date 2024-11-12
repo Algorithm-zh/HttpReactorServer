@@ -3,6 +3,7 @@
 #include <cstdio>
 #include <stdlib.h>
 #include <sys/epoll.h>
+#include <unistd.h>
 
 EpollDispatcher::EpollDispatcher() {
   epfd = epoll_create(10);
@@ -59,6 +60,20 @@ void EpollDispatcher::dispatch(EventLoop *evLoop, int timeout) {
   for (int i = 0; i < count; i++) {
     int event = events->events;
     int fd = events->data.fd;
+    // 对端断开连接or对端断开连接仍在通信
+    if (event & EPOLLERR || event & EPOLLHUP) {
+      // 删除fd
+    }
+    if (event & EPOLLIN) {
+      evLoop->eventActivate(fd, ReadEvent);
+    }
+    if (event & EPOLLOUT) {
+      evLoop->eventActivate(fd, WriteEvent);
+    }
   }
 }
-int EpollDispatcher::clear(EventLoop *evLoop) {}
+int EpollDispatcher::clear(EventLoop *evLoop) {
+  free(events);
+  close(epfd);
+  return 0;
+}

@@ -11,3 +11,12 @@ void ChannelMap::ChannelMapClear(ChannelMap *map) {
     map->mChannelMap.clear();
   }
 }
+Channel *ChannelMap::getChannel(int fd) { return mChannelMap[fd]; }
+void ChannelMap::setChannelMap(int fd, Channel *channel) {
+  mChannelMap.insert(std::make_pair(fd, channel));
+}
+int ChannelMap::ChannelFdDelete(int fd) {
+  if (mChannelMap[fd] != nullptr)
+    mChannelMap.erase(fd);
+  return 0;
+}
