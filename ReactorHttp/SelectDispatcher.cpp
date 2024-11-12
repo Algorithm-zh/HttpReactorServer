@@ -65,10 +65,10 @@ void SelectDispatcher::dispatch(EventLoop *evLoop, int timeout) {
   }
   for (int i = 0; i < Max; i++) {
     if (FD_ISSET(i, &rdtmp)) {
-      continue;
+      evLoop->eventActivate(i, ReadEvent);
     }
     if (FD_ISSET(i, &wrtmp)) {
-      continue;
+      evLoop->eventActivate(i, WriteEvent);
     }
   }
 }

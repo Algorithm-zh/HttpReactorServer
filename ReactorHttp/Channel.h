@@ -20,10 +20,11 @@ public:
   int getFd();
   int getEvents();
 
-private:
-  int fd;
-  int events;
   handleFunc readCallback;
   handleFunc writeCallback;
   void *arg;
+
+private:
+  int fd;
+  int events;
 };

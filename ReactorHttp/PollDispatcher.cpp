@@ -86,8 +86,10 @@ void PollDispatcher::dispatch(EventLoop *evLoop, int timeout) {
       continue;
     // 对端断开连接or对端断开连接仍在通信
     if (fds[i].revents & EPOLLIN) {
+      evLoop->eventActivate(fds[i].fd, ReadEvent);
     }
     if (fds[i].revents & EPOLLOUT) {
+      evLoop->eventActivate(fds[i].fd, WriteEvent);
     }
   }
 }
