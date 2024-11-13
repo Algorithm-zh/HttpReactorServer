@@ -67,10 +67,11 @@ int EventLoop::eventLoopProcessTask() {
   return 0;
 }
 
-EventLoop::EventLoop() : isQuit(false) {
+EventLoop::EventLoop(const char *name) : isQuit(false) {
   dispatcher = new EpollDispatcher();
   threadId = pthread_self();
   mChannelMap = ChannelMap::ChannelMapInit();
+  threadName = name;
   // 两个fd之间本地网络通信
   int ret = socketpair(AF_UNIX, SOCK_STREAM, 0, msocketpair);
   if (ret == -1) {
@@ -84,7 +85,9 @@ EventLoop::EventLoop() : isQuit(false) {
   eventLoopAddTask(channel, ADD);
 }
 
-EventLoop *EventLoop::eventLoopInit() { return new EventLoop(); }
+EventLoop *EventLoop::eventLoopInit(const char *name) {
+  return new EventLoop(name);
+}
 int EventLoop::eventLoopRun() {
   // 取出事件分发和检测模型
   Dispatcher *dispatcher = dispatcher;
@@ -112,12 +115,14 @@ int EventLoop::eventActivate(int fd, int event) {
 }
 int EventLoop::eventLoopAddTask(Channel *channel, int type) {
   // 枷锁，保护共享资源
-  std::lock_guard<std::mutex> lock(mutex);
-  // 创建新节点
-  ChannelElement *node = new ChannelElement();
-  node->channel = channel;
-  node->type = type;
-  mQueue.push(node);
+  {
+    std::lock_guard<std::mutex> lock(mutex);
+    // 创建新节点
+    ChannelElement *node = new ChannelElement();
+    node->channel = channel;
+    node->type = type;
+    mQueue.push(node);
+  }
   // 处理节点
   /*
    *细节：
@@ -138,3 +143,4 @@ int EventLoop::eventLoopAddTask(Channel *channel, int type) {
 
   return 0;
 }
+int EventLoop::getThreadId() { return threadId; }

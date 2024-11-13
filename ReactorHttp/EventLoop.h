@@ -17,8 +17,8 @@ public:
 };
 class EventLoop {
 public:
-  EventLoop();
-  static EventLoop *eventLoopInit();
+  EventLoop(const char *name);
+  static EventLoop *eventLoopInit(const char *name);
   // 启动反应堆模型
   int eventLoopRun();
   // 处理激活的文件fd
@@ -38,6 +38,8 @@ public:
   // 释放Channel
   int destoryChannel(Channel *channel);
 
+  int getThreadId();
+
 private:
   bool isQuit;
   Dispatcher *dispatcher;
@@ -48,6 +50,7 @@ private:
   // mutex
   std::mutex mutex;
   int threadId;
+  const char *threadName;
   // 存储本地通信的fd，通过socketpair初始化
   int msocketpair[2];
 };
