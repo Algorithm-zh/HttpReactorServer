@@ -6,7 +6,7 @@
 class ThreadPool {
 public:
   ThreadPool(EventLoop *mainLoop, int count);
-  ThreadPool *threadPoolInit(EventLoop *mainLoop, int count);
+  static ThreadPool *threadPoolInit(EventLoop *mainLoop, int count);
   void threadPoolRun();
   // 取出线程池中某个子线程的反应堆实例
   EventLoop *takeWorkerEventLoop();

@@ -3,7 +3,7 @@
 class Buffer {
 public:
   Buffer(int size);
-  Buffer *bufferInit(int size);
+  static Buffer *bufferInit(int size);
   void bufferDestory();
   void bufferExtendRoom(int size);
   // 剩余内存容量获取
