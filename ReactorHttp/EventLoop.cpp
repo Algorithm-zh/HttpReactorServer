@@ -28,7 +28,7 @@ int EventLoop::destoryChannel(Channel *channel) {
   // 删除channel和fd的对应关系
   mChannelMap->ChannelFdDelete(channel->getFd());
   close(channel->getFd());
-  free(channel);
+  delete channel;
   return 0;
 }
 int EventLoop::eventLoopAdd(Channel *channel) {
@@ -61,7 +61,7 @@ int EventLoop::eventLoopProcessTask() {
     } else if (ChannelElement->type == DELETE) {
       eventLoopRemove(ChannelElement->channel);
     }
-    free(ChannelElement);
+    delete ChannelElement;
   }
 
   return 0;

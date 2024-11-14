@@ -19,6 +19,7 @@ class EventLoop {
 public:
   EventLoop(const char *name);
   static EventLoop *eventLoopInit(const char *name);
+  static EventLoop *eventLoopInitNoName(const char *name);
   // 启动反应堆模型
   int eventLoopRun();
   // 处理激活的文件fd

@@ -16,11 +16,17 @@ public:
   // 就是上面那个函数的简单版
   int bufferAppendString(const char *data);
   int bufferSocketRead(int fd);
+  // 根据\r\n取出一行，找到其在数据块中的位置，返回该位置
+  char *bufferFindCRLF();
+
+  char *beginRead() { return data + readPos; };
+  char *beginWrite() { return data + writePos; };
+
+  int readPos;
+  int writePos;
 
 private:
   // 指向内存的指针
   char *data;
   int capacity;
-  int readPos;
-  int writePos;
 };

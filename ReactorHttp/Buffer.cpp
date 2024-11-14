@@ -80,3 +80,10 @@ int Buffer::bufferSocketRead(int fd) {
   free(tmpbuf);
   return result;
 }
+
+char *Buffer::bufferFindCRLF() {
+  // strstr. 大字符串中匹配子字符串（遇到\0结束）
+  // memmem. 大数据快中匹配子数据块（需要指定各数据块大小,所以不会遇到\0结束）
+  void *ptr = memmem(data + readPos, bufferReadableSize(), "\r\n", 2);
+  return (char *)ptr;
+}

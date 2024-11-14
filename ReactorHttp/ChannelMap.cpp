@@ -6,7 +6,7 @@ void ChannelMap::ChannelMapClear(ChannelMap *map) {
   if (map != nullptr) {
     for (auto it : map->mChannelMap) {
       if (it.second != nullptr)
-        free(it.second);
+        delete it.second;
     }
     map->mChannelMap.clear();
   }
