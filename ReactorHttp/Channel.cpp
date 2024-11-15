@@ -1,12 +1,16 @@
 #include "Channel.h"
 Channel *Channel::channelInit(int fd, int events, handleFunc readCallback,
-                              handleFunc writeCallback, void *arg) {
-  return new Channel(fd, events, readCallback, writeCallback, arg);
+                              handleFunc writeCallback,
+                              handleFunc destroyCallback, void *arg) {
+  return new Channel(fd, events, readCallback, writeCallback, destroyCallback,
+                     arg);
 }
 Channel::Channel(int fd, int events, handleFunc readCallback,
-                 handleFunc writeCallback, void *arg)
+                 handleFunc writeCallback, handleFunc destroyCallback,
+                 void *arg)
     : fd(fd), events(events), readCallback(readCallback),
-      writeCallback(writeCallback), arg(arg) {}
+      writeCallback(writeCallback), destroyCallback(destroyCallback), arg(arg) {
+}
 
 void Channel::writeEventEnable(Channel *channel, bool flag) {
   if (flag)

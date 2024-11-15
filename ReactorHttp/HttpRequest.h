@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Buffer.h"
+#include "HttpResponse.h"
 class RequestHeader {
 
 public:
@@ -37,6 +38,16 @@ public:
                          char **ptr);
   // 解析请求头
   bool parseHttpRequestHeader(Buffer *readBuf);
+  // 解析http请求协议
+  bool parseHttpRequest(Buffer *readBuf, HttpResponse *response,
+                        Buffer *sendBuf, int socket);
+  // 处理http请求
+  bool processHttpRequest(HttpResponse *response);
+  void decodeMsg(char *to, char *from);
+  int hexToDec(char c);
+  const char *getFileType(const char *name);
+  static void sendFile(const char *fileName, Buffer *sendBuf, int cfd);
+  static void sendDir(const char *dirName, Buffer *sendBuf, int cfd);
 
 private:
   // 请求行

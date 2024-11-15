@@ -1,5 +1,6 @@
 #include "PollDispatcher.h"
 #include "Channel.h"
+#include "TcpConnection.h"
 #include <cstdio>
 #include <cstdlib>
 #include <stdlib.h>
@@ -70,6 +71,10 @@ int PollDispatcher::remove(Channel *channel, EventLoop *evLoop) {
       break;
     }
   }
+  // 通过channel释放对应的TcpConnection资源
+  channel->destroyCallback(channel->arg); // arg为TcpConnection*
+  delete (TcpConnection *)channel->arg;
+
   if (i >= Max)
     return -1;
   return 0;
@@ -94,3 +99,4 @@ void PollDispatcher::dispatch(EventLoop *evLoop, int timeout) {
   }
 }
 int PollDispatcher::clear(EventLoop *evLoop) { return 0; }
+PollDispatcher::~PollDispatcher() {}

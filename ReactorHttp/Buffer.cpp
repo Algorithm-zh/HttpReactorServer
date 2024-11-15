@@ -3,7 +3,9 @@
 #include <cstdlib>
 #include <cstring>
 #include <ctime>
+#include <sys/socket.h>
 #include <sys/uio.h>
+#include <unistd.h>
 
 Buffer::Buffer(int size) {
   data = (char *)malloc(size);
@@ -86,4 +88,17 @@ char *Buffer::bufferFindCRLF() {
   // memmem. 大数据快中匹配子数据块（需要指定各数据块大小,所以不会遇到\0结束）
   void *ptr = memmem(data + readPos, bufferReadableSize(), "\r\n", 2);
   return (char *)ptr;
+}
+
+int Buffer::bufferSendData(int socket) {
+  // 判断有无数据
+  int readable = bufferReadableSize();
+  if (readable > 0) {
+    int count = send(socket, data + readPos, readable, 0);
+    if (count > 0) {
+      readPos += count;
+      usleep(1);
+    }
+    return count;
+  }
 }

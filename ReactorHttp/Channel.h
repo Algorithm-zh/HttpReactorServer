@@ -8,9 +8,10 @@ class Channel {
 
 public:
   Channel(int fd, int events, handleFunc readCallback, handleFunc writeCallback,
-          void *arg);
+          handleFunc destroyCallback, void *arg);
   static Channel *channelInit(int fd, int events, handleFunc readCallback,
-                              handleFunc writeCallback, void *arg);
+                              handleFunc writeCallback,
+                              handleFunc destroyCallback, void *arg);
   // 修改fd的写事件（检测or不检测）（读事件一定要检测）
   // 默认情况可以不检测fd的写事件(因为写缓冲区肯定有空间可写)
   // 当要发送数据的时候，添加写事件的检测，它就会立马被触发
@@ -22,6 +23,7 @@ public:
 
   handleFunc readCallback;
   handleFunc writeCallback;
+  handleFunc destroyCallback;
   void *arg;
 
 private:

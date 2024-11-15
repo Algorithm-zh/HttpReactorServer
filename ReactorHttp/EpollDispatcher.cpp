@@ -1,5 +1,7 @@
 #include "EpollDispatcher.h"
 #include "Channel.h"
+#include "EventLoop.h"
+#include "TcpConnection.h"
 #include <cstdio>
 #include <stdlib.h>
 #include <sys/epoll.h>
@@ -52,6 +54,8 @@ int EpollDispatcher::remove(Channel *channel, EventLoop *evLoop) {
     perror("epoll_ctl add");
     exit(0);
   }
+  channel->destroyCallback(channel->arg); // arg为TcpConnection*
+  delete (TcpConnection *)channel->arg;
   return ret;
 }
 void EpollDispatcher::dispatch(EventLoop *evLoop, int timeout) {
@@ -77,3 +81,4 @@ int EpollDispatcher::clear(EventLoop *evLoop) {
   close(epfd);
   return 0;
 }
+EpollDispatcher::~EpollDispatcher() {}

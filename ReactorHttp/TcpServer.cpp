@@ -32,8 +32,8 @@ void TcpServer::tcpServerRun() {
   threadPool->threadPoolRun();
   // 添加检测的任务
   // 初始化一个channel
-  Channel *channel = Channel::channelInit(listner->getFd(), ReadEvent,
-                                          acceptConnection, nullptr, this);
+  Channel *channel = Channel::channelInit(
+      listner->getFd(), ReadEvent, acceptConnection, nullptr, nullptr, this);
   mainLoop->eventLoopAddTask(channel, ADD);
   // 启动反应堆模型
   mainLoop->eventLoopRun();

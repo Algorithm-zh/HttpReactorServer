@@ -79,8 +79,8 @@ EventLoop::EventLoop(const char *name) : isQuit(false) {
     exit(0);
   }
   // 指定规则msocketpair[0] 发送数据，msocketpair[1]接收数据
-  Channel *channel = Channel::channelInit(msocketpair[1], ReadEvent,
-                                          readLocalMessage, NULL, this);
+  Channel *channel = Channel::channelInit(
+      msocketpair[1], ReadEvent, readLocalMessage, nullptr, nullptr, this);
   // channel添加到任务队列
   eventLoopAddTask(channel, ADD);
 }

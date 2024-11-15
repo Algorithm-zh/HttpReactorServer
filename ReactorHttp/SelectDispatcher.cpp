@@ -1,5 +1,6 @@
 #include "SelectDispatcher.h"
 #include "Channel.h"
+#include "TcpConnection.h"
 #include <bits/types/struct_timeval.h>
 #include <cstdio>
 #include <cstdlib>
@@ -48,6 +49,8 @@ int SelectDispatcher::modify(Channel *channel, EventLoop *evLoop) {
 }
 int SelectDispatcher::remove(Channel *channel, EventLoop *evLoop) {
   clearFdSet(channel);
+  channel->destroyCallback(channel->arg); // arg为TcpConnection*
+  delete (TcpConnection *)channel->arg;
   return 0;
 }
 void SelectDispatcher::dispatch(EventLoop *evLoop, int timeout) {
@@ -73,3 +76,4 @@ void SelectDispatcher::dispatch(EventLoop *evLoop, int timeout) {
   }
 }
 int SelectDispatcher::clear(EventLoop *evLoop) { return 0; }
+SelectDispatcher::~SelectDispatcher() {}
