@@ -1,23 +1,22 @@
 #pragma once
 #include "Dispatcher.h"
 #include <sys/epoll.h>
-#define Max 520
 class EpollDispatcher : public Dispatcher {
 public:
-  EpollDispatcher();
-  virtual ~EpollDispatcher();
+  EpollDispatcher(EventLoop *evLoop);
+  ~EpollDispatcher();
 
   static EpollDispatcher *init();
 
-  virtual int add(Channel *channel, EventLoop *evLoop);
-  virtual int modify(Channel *channel, EventLoop *evLoop);
-  virtual int remove(Channel *channel, EventLoop *evLoop);
-  virtual void dispatch(EventLoop *evLoop, int timeout);
-  virtual int clear(EventLoop *evLoop);
-
-  int epollCtl(Channel *channel, EventLoop *evLoop, int op);
+  int add() override;
+  int modify() override;
+  int remove() override;
+  void dispatch(int timeout = 2) override;
 
 private:
-  int epfd;
-  struct epoll_event *events;
+  int m_epfd;
+  struct epoll_event *m_events;
+  const int m_maxNode = 520;
+
+  int epollCtl(int op);
 };

@@ -1,3 +1,5 @@
+#include "Log.h"
+#include "TcpServer.h"
 #include <iostream>
 #include <unistd.h>
 
@@ -10,5 +12,10 @@ int main(int argc, char *argv[]) {
   unsigned short port = atoi(argv[1]);
   // 切换服务器工作路径
   chdir(argv[2]);
+  // 启动服务器啊
+  Debug("开始运行");
+
+  TcpServer *server = TcpServer::TcpServerInit(port, 4);
+  server->tcpServerRun();
   return 0;
 }

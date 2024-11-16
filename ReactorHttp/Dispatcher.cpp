@@ -1,4 +1,4 @@
 #include "Dispatcher.h"
 
-Dispatcher::Dispatcher() {};
-Dispatcher::~Dispatcher() {};
+Dispatcher::Dispatcher(EventLoop *evLoop) : m_evLoop(evLoop) {}
+Dispatcher::~Dispatcher() {}

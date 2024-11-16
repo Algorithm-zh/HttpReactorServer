@@ -1,127 +1,100 @@
 #include "EventLoop.h"
 #include "Channel.h"
-#include "ChannelMap.h"
 #include "EpollDispatcher.h"
+#include "Log.h"
 #include <cassert>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <functional>
 #include <mutex>
-#include <pthread.h>
+#include <string>
 #include <sys/socket.h>
+#include <thread>
 #include <unistd.h>
+#include <utility>
 
-// 写数据
-// 目的就是往pair[0]写数据以此激活pair[1]
-void EventLoop::taskWakeUp() {
-  const char *msg = "激活激活";
-  write(msocketpair[0], msg, strlen(msg));
-}
-// 读数据
-void EventLoop::readLocalMessage(void *arg) {
-  EventLoop *evLoop = (EventLoop *)arg;
-  char buf[256];
-  read(evLoop->msocketpair[1], buf, sizeof(buf));
-}
-
-int EventLoop::destoryChannel(Channel *channel) {
-  // 删除channel和fd的对应关系
-  mChannelMap->ChannelFdDelete(channel->getFd());
-  close(channel->getFd());
-  delete channel;
-  return 0;
-}
-int EventLoop::eventLoopAdd(Channel *channel) {
-  int fd = channel->getFd();
-  mChannelMap->setChannelMap(fd, channel);
-  dispatcher->add(channel, this);
-  return 0;
-}
-int EventLoop::eventLoopRemove(Channel *channel) {
-  int fd = channel->getFd();
-  int ret = dispatcher->remove(channel, this);
-  return ret;
-}
-int EventLoop::eventLoopModify(Channel *channel) {
-  int fd = channel->getFd();
-  if (mChannelMap->getChannel(fd) == nullptr)
-    return -1;
-  int ret = dispatcher->modify(channel, this);
-  return ret;
-}
-int EventLoop::eventLoopProcessTask() {
-  std::lock_guard<std::mutex> lck(mutex);
-  while (!mQueue.emplace()) {
-    ChannelElement *ChannelElement = mQueue.front();
-    mQueue.pop();
-    if (ChannelElement->type == ADD) {
-      eventLoopAdd(ChannelElement->channel);
-    } else if (ChannelElement->type == MODEIFY) {
-      eventLoopModify(ChannelElement->channel);
-    } else if (ChannelElement->type == DELETE) {
-      eventLoopRemove(ChannelElement->channel);
-    }
-    delete ChannelElement;
-  }
-
-  return 0;
-}
-
-EventLoop::EventLoop(const char *name) : isQuit(false) {
-  dispatcher = new EpollDispatcher();
-  threadId = pthread_self();
-  mChannelMap = ChannelMap::ChannelMapInit();
-  threadName = name;
+EventLoop::EventLoop(const std::string threadName) {
+  m_isQuit = true;
+  m_dispatcher = new EpollDispatcher(this);
+  m_threadId = std::this_thread::get_id();
+  m_threadName = threadName == std::string() ? "MainThread" : threadName;
+  m_channelMap.clear();
   // 两个fd之间本地网络通信
-  int ret = socketpair(AF_UNIX, SOCK_STREAM, 0, msocketpair);
+  int ret = socketpair(AF_UNIX, SOCK_STREAM, 0, m_socketpair);
   if (ret == -1) {
     perror("socketpair");
     exit(0);
   }
   // 指定规则msocketpair[0] 发送数据，msocketpair[1]接收数据
-  Channel *channel = Channel::channelInit(
-      msocketpair[1], ReadEvent, readLocalMessage, nullptr, nullptr, this);
+  // 绑定, functional不能直接对类的成员函数进行打包，所以需要先用绑定器绑定
+  auto obj = std::bind(&EventLoop::readLocalMessage, this);
+  Channel *channel = new Channel(m_socketpair[1], FDEvent::ReadEvent, obj,
+                                 nullptr, nullptr, this);
   // channel添加到任务队列
-  eventLoopAddTask(channel, ADD);
+  addTask(channel, ElemType::ADD);
 }
 
-EventLoop *EventLoop::eventLoopInit(const char *name) {
-  return new EventLoop(name);
+EventLoop::EventLoop() : EventLoop(std::string()) {
+  // 委托构造函数,直接调用代餐构造函数里的内容
 }
-int EventLoop::eventLoopRun() {
-  // 取出事件分发和检测模型
-  Dispatcher *dispatcher = dispatcher;
+
+EventLoop::~EventLoop() {}
+
+// 写数据
+// 目的就是往pair[0]写数据以此激活pair[1]
+void EventLoop::taskWakeUp() {
+  Debug("激活子线程");
+  const char *msg = "激活激活";
+  write(m_socketpair[0], msg, strlen(msg));
+}
+
+// 读数据
+int EventLoop::readLocalMessage() {
+  char buf[256];
+  read(m_socketpair[1], buf, sizeof(buf));
+  return 0;
+}
+
+int EventLoop::run() {
+  m_isQuit = false;
+  // 比较线程id是否正常
+  if (m_threadId != std::this_thread::get_id())
+    return -1;
   // 循环进行事件处理
-  while (!isQuit) {
-    dispatcher->dispatch(this, 2);
+  while (!m_isQuit) {
+    m_dispatcher->dispatch();
     // 子线程自己修改自己的fd或子线程阻塞在dispatch里，主线程添加修改子线程的fd的事件唤醒子线程然后调用任务处理函数
-    eventLoopProcessTask();
+    processTaskQ();
   }
   return 0;
 }
+
 int EventLoop::eventActivate(int fd, int event) {
   if (fd < 0)
     return -1;
   // 取出Channel
-  Channel *channel = mChannelMap->getChannel(fd);
+  Channel *channel = m_channelMap[fd];
   assert(channel->getFd() == fd);
-  if (event & ReadEvent && channel->readCallback) {
-    channel->readCallback(channel->arg);
+  if (event & (int)FDEvent::ReadEvent && channel->readCallback) {
+    channel->readCallback(const_cast<void *>(channel->getArg()));
   }
-  if (event & WriteEvent && channel->writeCallback) {
-    channel->writeCallback(channel->arg);
+  if (event & (int)FDEvent::WriteEvent && channel->writeCallback) {
+    channel->writeCallback(const_cast<void *>(channel->getArg()));
   }
   return 0;
 }
-int EventLoop::eventLoopAddTask(Channel *channel, int type) {
+
+int EventLoop::addTask(Channel *channel, ElemType type) {
+
   // 枷锁，保护共享资源
   {
-    std::lock_guard<std::mutex> lock(mutex);
+    std::lock_guard<std::mutex> lock(m_mutex);
     // 创建新节点
     ChannelElement *node = new ChannelElement();
     node->channel = channel;
     node->type = type;
-    mQueue.push(node);
+    m_taskQ.push(node);
   }
   // 处理节点
   /*
@@ -131,9 +104,9 @@ int EventLoop::eventLoopAddTask(Channel *channel, int type) {
    *       (2).添加新的fd，添加任务的操作是由主线程发起的
    *   2.不能让主线程处理任务队列，需要由当前的子线程去处理
    */
-  if (threadId == pthread_self()) {
+  if (m_threadId == std::this_thread::get_id()) {
     // 子线程
-    eventLoopProcessTask();
+    processTaskQ();
 
   } else {
     // 主线程 --告诉子线程处理任务队列中的任务
@@ -143,4 +116,62 @@ int EventLoop::eventLoopAddTask(Channel *channel, int type) {
 
   return 0;
 }
-int EventLoop::getThreadId() { return threadId; }
+
+int EventLoop::processTaskQ() {
+  Debug("ChannelElementQueue size:%ld", m_taskQ.size());
+  while (!m_taskQ.empty()) {
+    m_mutex.lock();
+    ChannelElement *node = m_taskQ.front();
+    m_mutex.unlock();
+    m_taskQ.pop();
+    Channel *channel = node->channel;
+    if (node->type == ElemType::ADD) {
+      add(channel);
+    } else if (node->type == ElemType::MODIFY) {
+      modify(channel);
+    } else if (node->type == ElemType::DELETE) {
+      remove(channel);
+    }
+    Debug("释放ChannelElement before");
+    delete node;
+    Debug("释放ChannelElement after");
+  }
+  return 0;
+}
+
+int EventLoop::add(Channel *channel) {
+  int fd = channel->getFd();
+  if (m_channelMap.find(fd) == m_channelMap.end()) {
+    m_channelMap.insert(std::make_pair(fd, channel));
+    m_dispatcher->setChannel(channel);
+    int ret = m_dispatcher->add();
+    return ret;
+  }
+  return -1;
+}
+
+int EventLoop::remove(Channel *channel) {
+  int fd = channel->getFd();
+  m_dispatcher->setChannel(channel);
+  int ret = m_dispatcher->remove();
+  return ret;
+}
+
+int EventLoop::modify(Channel *channel) {
+  int fd = channel->getFd();
+  if (m_channelMap.find(fd) == m_channelMap.end())
+    return -1;
+  int ret = m_dispatcher->modify();
+  return ret;
+}
+
+int EventLoop::freeChannel(Channel *channel) {
+  // 删除channel和fd的对应关系
+  auto it = m_channelMap.find(channel->getFd());
+  if (it != m_channelMap.end()) {
+    m_channelMap.erase(it);
+    close(channel->getFd());
+    delete channel;
+  }
+  return 0;
+}

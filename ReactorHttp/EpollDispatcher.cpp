@@ -1,84 +1,84 @@
 #include "EpollDispatcher.h"
 #include "Channel.h"
 #include "EventLoop.h"
+#include "Log.h"
 #include "TcpConnection.h"
 #include <cstdio>
 #include <stdlib.h>
 #include <sys/epoll.h>
 #include <unistd.h>
 
-EpollDispatcher::EpollDispatcher() {
-  epfd = epoll_create(10);
-  if (epfd == -1) {
+EpollDispatcher::EpollDispatcher(EventLoop *evLoop) : Dispatcher(evLoop) {
+  m_epfd = epoll_create(10);
+  if (m_epfd == -1) {
     perror("epoll_create");
     exit(0);
   }
-  events = (struct epoll_event *)calloc(Max, sizeof(struct epoll_event));
+  m_name = "Epoll";
+  m_events = new struct epoll_event[m_maxNode];
 }
-EpollDispatcher *EpollDispatcher::init() { return new EpollDispatcher(); }
 
-int EpollDispatcher::epollCtl(Channel *channel, EventLoop *evLoop, int op) {
+int EpollDispatcher::epollCtl(int op) {
   struct epoll_event ev;
-  ev.data.fd = channel->getFd();
+  ev.data.fd = m_channel->getFd();
   int events = 0;
   // 判断channel里的Events是什么事件
-  if (channel->getEvents() & ReadEvent) {
+  if (m_channel->getEvents() & (int)FDEvent::ReadEvent) {
     events |= EPOLLIN;
   }
-  if (channel->getEvents() & WriteEvent) {
+  if (m_channel->getEvents() & (int)FDEvent::WriteEvent) {
     events |= EPOLLOUT;
   }
+  Debug("开始检测事件: %d", events);
   ev.events = events;
-  int ret = epoll_ctl(epfd, op, channel->getFd(), &ev);
+  int ret = epoll_ctl(m_epfd, op, m_channel->getFd(), &ev);
   return ret;
 }
-int EpollDispatcher::add(Channel *channel, EventLoop *evLoop) {
-  int ret = epollCtl(channel, evLoop, EPOLL_CTL_ADD);
+int EpollDispatcher::add() {
+  int ret = epollCtl(EPOLL_CTL_ADD);
   if (ret == -1) {
     perror("epoll_ctl add");
     exit(0);
   }
   return ret;
 }
-int EpollDispatcher::modify(Channel *channel, EventLoop *evLoop) {
-  int ret = epollCtl(channel, evLoop, EPOLL_CTL_MOD);
+int EpollDispatcher::modify() {
+  int ret = epollCtl(EPOLL_CTL_MOD);
   if (ret == -1) {
     perror("epoll_ctl add");
     exit(0);
   }
   return ret;
 }
-int EpollDispatcher::remove(Channel *channel, EventLoop *evLoop) {
-  int ret = epollCtl(channel, evLoop, EPOLL_CTL_DEL);
+int EpollDispatcher::remove() {
+  int ret = epollCtl(EPOLL_CTL_DEL);
   if (ret == -1) {
     perror("epoll_ctl add");
     exit(0);
   }
-  channel->destroyCallback(channel->arg); // arg为TcpConnection*
-  delete (TcpConnection *)channel->arg;
+  m_channel->destroyCallback(
+      const_cast<void *>(m_channel->getArg())); // arg为TcpConnection*
   return ret;
 }
-void EpollDispatcher::dispatch(EventLoop *evLoop, int timeout) {
+void EpollDispatcher::dispatch(int timeout) {
 
-  int count = epoll_wait(epfd, events, Max, timeout * 1000);
+  int count = epoll_wait(m_epfd, m_events, m_maxNode, timeout * 1000);
   for (int i = 0; i < count; i++) {
-    int event = events->events;
-    int fd = events->data.fd;
+    int event = m_events->events;
+    int fd = m_events->data.fd;
     // 对端断开连接or对端断开连接仍在通信
     if (event & EPOLLERR || event & EPOLLHUP) {
       // 删除fd
     }
     if (event & EPOLLIN) {
-      evLoop->eventActivate(fd, ReadEvent);
+      m_evLoop->eventActivate(fd, (int)FDEvent::ReadEvent);
     }
     if (event & EPOLLOUT) {
-      evLoop->eventActivate(fd, WriteEvent);
+      m_evLoop->eventActivate(fd, (int)FDEvent::WriteEvent);
     }
   }
 }
-int EpollDispatcher::clear(EventLoop *evLoop) {
-  free(events);
-  close(epfd);
-  return 0;
+EpollDispatcher::~EpollDispatcher() {
+  close(m_epfd);
+  delete[] m_events;
 }
-EpollDispatcher::~EpollDispatcher() {}

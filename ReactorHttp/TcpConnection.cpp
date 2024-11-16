@@ -3,6 +3,7 @@
 #include "EventLoop.h"
 #include "HttpRequest.h"
 #include "HttpResponse.h"
+#include "Log.h"
 #include <cstdio>
 
 TcpConnection::TcpConnection(int fd, EventLoop *evLoop) {
@@ -15,6 +16,8 @@ TcpConnection::TcpConnection(int fd, EventLoop *evLoop) {
   channel = Channel::channelInit(fd, ReadEvent, processRead, processWrite,
                                  tcpConnectionDestroy, this);
   evLoop->eventLoopAddTask(channel, ADD);
+  Debug("和客户端建立连接, threadName:%s, threadID:%d, connName:%s",
+        evLoop->getThreadName(), evLoop->getThreadId(), name);
 }
 // TcpConnection的EventLoop来自子线程
 TcpConnection *TcpConnection::tcpConnectionInit(int fd, EventLoop *evLoop) {
@@ -24,6 +27,7 @@ int TcpConnection::processRead(void *arg) {
   TcpConnection *conn = (TcpConnection *)arg;
   // 接收数据
   int count = conn->readBuf->bufferSocketRead(conn->channel->getFd());
+  Debug("接收到http请求数据：%s", conn->readBuf->beginRead());
   if (count > 0) {
     // 接收到了http请求，解析http请求
     int socket = conn->channel->getFd();
@@ -38,6 +42,10 @@ int TcpConnection::processRead(void *arg) {
       char *errMsg = (char *)"Http/1.1 400 Bad Request\r\n\r\n";
       conn->writeBuf->bufferAppendString(errMsg);
     }
+  } else {
+#ifdef MSG_SEND_AUTO
+    conn->evLoop->eventLoopAddTask(conn->channel, DELETE);
+#endif
   }
   // 断开连接
 #ifndef MSG_SEND_AUTO
@@ -47,6 +55,7 @@ int TcpConnection::processRead(void *arg) {
 }
 int TcpConnection::processWrite(void *arg) {
 
+  Debug("开始发送数据（基于写事件发送）");
   TcpConnection *conn = (TcpConnection *)arg;
   // 发送数据
   int count = conn->writeBuf->bufferSendData(conn->channel->getFd());
@@ -75,5 +84,6 @@ int TcpConnection::tcpConnectionDestroy(void *arg) {
     conn->request->httpRequestDestroy();
     conn->response->httpResonseDestroy();
   }
+  Debug("连接断开释放资源，connName:%s", conn->name);
   return 0;
 }

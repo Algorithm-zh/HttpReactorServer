@@ -301,7 +301,7 @@ void HttpRequest::sendFile(const char *fileName, Buffer *sendBuf, int cfd) {
 #ifndef MSG_SEND_AUTO
       sendBuf->bufferSendData(cfd);
 #endif
-      usleep(10); // 让数据发的慢点，以便于对端处理数据
+      // usleep(10); // 让数据发的慢点，以便于对端处理数据
     } else if (len == 0) {
       break;
     } else {

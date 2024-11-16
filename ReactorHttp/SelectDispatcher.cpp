@@ -1,5 +1,6 @@
 #include "SelectDispatcher.h"
 #include "Channel.h"
+#include "Dispatcher.h"
 #include "TcpConnection.h"
 #include <bits/types/struct_timeval.h>
 #include <cstdio>
@@ -10,70 +11,69 @@
 #include <sys/select.h>
 #include <unistd.h>
 
-SelectDispatcher::SelectDispatcher() {
-  FD_ZERO(&readSet);
-  FD_ZERO(&writeSet);
-  FD_ZERO(&exceptSet);
+SelectDispatcher::SelectDispatcher(EventLoop *evLoop) : Dispatcher(evLoop) {
+  FD_ZERO(&m_readSet);
+  FD_ZERO(&m_writeSet);
+  FD_ZERO(&m_exceptSet);
+  m_name = "Select";
 }
-SelectDispatcher *SelectDispatcher::init() { return new SelectDispatcher(); }
-int SelectDispatcher::setFdSet(Channel *channel) {
-  if (channel->getEvents() & ReadEvent) {
-    FD_SET(channel->getFd(), &readSet);
+int SelectDispatcher::setFdSet() {
+  if (m_channel->getEvents() & (int)FDEvent::ReadEvent) {
+    FD_SET(m_channel->getFd(), &m_readSet);
   }
-  if (channel->getEvents() & WriteEvent) {
-    FD_SET(channel->getFd(), &writeSet);
+  if (m_channel->getEvents() & (int)FDEvent::WriteEvent) {
+    FD_SET(m_channel->getFd(), &m_writeSet);
   }
   return 0;
 }
-int SelectDispatcher::clearFdSet(Channel *channel) {
-  if (channel->getEvents() & ReadEvent) {
-    FD_CLR(channel->getFd(), &readSet);
+int SelectDispatcher::clearFdSet() {
+  if (m_channel->getEvents() & (int)FDEvent::ReadEvent) {
+    FD_CLR(m_channel->getFd(), &m_readSet);
   }
-  if (channel->getEvents() & WriteEvent) {
-    FD_CLR(channel->getFd(), &writeSet);
+  if (m_channel->getEvents() & (int)FDEvent::WriteEvent) {
+    FD_CLR(m_channel->getFd(), &m_writeSet);
   }
   return 0;
 }
 
-int SelectDispatcher::add(Channel *channel, EventLoop *evLoop) {
-  if (channel->getFd() >= Max)
+int SelectDispatcher::add() {
+  if (m_channel->getFd() >= m_maxSize)
     return -1;
-  setFdSet(channel);
+  setFdSet();
   return 0;
 }
-int SelectDispatcher::modify(Channel *channel, EventLoop *evLoop) {
+int SelectDispatcher::modify() {
 
-  setFdSet(channel);
-  clearFdSet(channel);
+  setFdSet();
+  clearFdSet();
   return 0;
 }
-int SelectDispatcher::remove(Channel *channel, EventLoop *evLoop) {
-  clearFdSet(channel);
-  channel->destroyCallback(channel->arg); // arg为TcpConnection*
-  delete (TcpConnection *)channel->arg;
+int SelectDispatcher::remove() {
+  clearFdSet();
+  m_channel->destroyCallback(
+      const_cast<void *>(m_channel->getArg())); // arg为TcpConnection*
   return 0;
 }
-void SelectDispatcher::dispatch(EventLoop *evLoop, int timeout) {
+void SelectDispatcher::dispatch(int timeout) {
 
   struct timeval val;
   val.tv_sec = timeout;
   val.tv_usec = 0;
   // 备份数据
-  fd_set rdtmp = readSet;
-  fd_set wrtmp = writeSet;
-  int count = select(Max, &rdtmp, &wrtmp, nullptr, &val);
+  fd_set rdtmp = m_readSet;
+  fd_set wrtmp = m_writeSet;
+  int count = select(m_maxSize, &rdtmp, &wrtmp, nullptr, &val);
   if (count == -1) {
     perror("select");
     exit(0);
   }
-  for (int i = 0; i < Max; i++) {
+  for (int i = 0; i < m_maxSize; i++) {
     if (FD_ISSET(i, &rdtmp)) {
-      evLoop->eventActivate(i, ReadEvent);
+      m_evLoop->eventActivate(i, (int)FDEvent::ReadEvent);
     }
     if (FD_ISSET(i, &wrtmp)) {
-      evLoop->eventActivate(i, WriteEvent);
+      m_evLoop->eventActivate(i, (int)FDEvent::WriteEvent);
     }
   }
 }
-int SelectDispatcher::clear(EventLoop *evLoop) { return 0; }
 SelectDispatcher::~SelectDispatcher() {}

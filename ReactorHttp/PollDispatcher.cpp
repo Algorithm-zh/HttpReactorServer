@@ -1,102 +1,100 @@
 #include "PollDispatcher.h"
 #include "Channel.h"
+#include "EventLoop.h"
 #include "TcpConnection.h"
-#include <cstdio>
-#include <cstdlib>
 #include <stdlib.h>
 #include <sys/epoll.h>
 #include <sys/poll.h>
 #include <unistd.h>
 
-PollDispatcher::PollDispatcher() {
-  maxfd = 0;
-  for (int i = 0; i < Max; i++) {
-    fds[i].fd = -1;
-    fds[i].events = 0;
-    fds[i].revents = 0;
+PollDispatcher::PollDispatcher(EventLoop *evLoop) : Dispatcher(evLoop) {
+  m_maxfd = 0;
+  m_fds = new struct pollfd[m_maxNode];
+  for (int i = 0; i < 1024; i++) {
+    m_fds[i].fd = -1;
+    m_fds[i].events = 0;
+    m_fds[i].revents = 0;
   }
+  m_name = "poll";
 }
-PollDispatcher *PollDispatcher::init() { return new PollDispatcher(); }
 
-int PollDispatcher::add(Channel *channel, EventLoop *evLoop) {
+int PollDispatcher::add() {
   int events = 0;
-  // 判断channel里的Events是什么事件
-  if (channel->getEvents() & ReadEvent) {
+  // 判断m_channel里的Events是什么事件
+  if (m_channel->getEvents() & (int)FDEvent::ReadEvent) {
     events |= POLLIN;
   }
-  if (channel->getEvents() & WriteEvent) {
+  if (m_channel->getEvents() & (int)FDEvent::WriteEvent) {
     events |= POLLOUT;
   }
   int i;
-  for (i = 0; i < Max; i++) {
-    if (fds[i].fd == -1) {
-      fds[i].fd = channel->getFd();
-      fds[i].events = events;
-      maxfd = maxfd > i ? maxfd : i;
+  for (i = 0; i < m_maxNode; i++) {
+    if (m_fds[i].fd == -1) {
+      m_fds[i].fd = m_channel->getFd();
+      m_fds[i].events = events;
+      m_maxfd = m_maxfd > i ? m_maxfd : i;
       break;
     }
   }
-  if (i >= Max)
+  if (i >= m_maxNode)
     return -1;
   return 0;
 }
-int PollDispatcher::modify(Channel *channel, EventLoop *evLoop) {
+int PollDispatcher::modify() {
   int events = 0;
-  // 判断channel里的Events是什么事件
-  if (channel->getEvents() & ReadEvent) {
+  // 判断m_channel里的Events是什么事件
+  if (m_channel->getEvents() & (int)FDEvent::ReadEvent) {
     events |= POLLIN;
   }
-  if (channel->getEvents() & WriteEvent) {
+  if (m_channel->getEvents() & (int)FDEvent::WriteEvent) {
     events |= POLLOUT;
   }
   int i;
-  for (i = 0; i < Max; i++) {
-    if (fds[i].fd == channel->getFd()) {
-      fds[i].events = events;
+  for (i = 0; i < m_maxNode; i++) {
+    if (m_fds[i].fd == m_channel->getFd()) {
+      m_fds[i].events = events;
       break;
     }
   }
-  if (i >= Max)
+  if (i >= m_maxNode)
     return -1;
   return 0;
 }
-int PollDispatcher::remove(Channel *channel, EventLoop *evLoop) {
+int PollDispatcher::remove() {
   int events = 0;
   int i;
-  for (i = 0; i < Max; i++) {
-    if (fds[i].fd == channel->getFd()) {
-      fds[i].fd = -1;
-      fds[i].events = 0;
-      fds[i].revents = 0;
+  for (i = 0; i < m_maxNode; i++) {
+    if (m_fds[i].fd == m_channel->getFd()) {
+      m_fds[i].fd = -1;
+      m_fds[i].events = 0;
+      m_fds[i].revents = 0;
       break;
     }
   }
-  // 通过channel释放对应的TcpConnection资源
-  channel->destroyCallback(channel->arg); // arg为TcpConnection*
-  delete (TcpConnection *)channel->arg;
+  // 通过m_channel释放对应的TcpConnection资源
+  m_channel->destroyCallback(const_cast<void *>(m_channel->getArg()));
 
-  if (i >= Max)
+  if (i >= m_maxNode)
     return -1;
   return 0;
 }
-void PollDispatcher::dispatch(EventLoop *evLoop, int timeout) {
+void PollDispatcher::dispatch(int timeout) {
 
-  int count = poll(fds, maxfd + 1, timeout * 1000);
+  int count = poll(m_fds, m_maxfd + 1, timeout * 1000);
   if (count == -1) {
     perror("poll");
     exit(0);
   }
-  for (int i = 0; i <= maxfd; i++) {
-    if (fds[i].fd == -1)
+  for (int i = 0; i <= m_maxfd; i++) {
+    if (m_fds[i].fd == -1)
       continue;
     // 对端断开连接or对端断开连接仍在通信
-    if (fds[i].revents & EPOLLIN) {
-      evLoop->eventActivate(fds[i].fd, ReadEvent);
+    if (m_fds[i].revents & EPOLLIN) {
+      m_evLoop->eventActivate(m_fds[i].fd, (int)FDEvent::ReadEvent);
     }
-    if (fds[i].revents & EPOLLOUT) {
-      evLoop->eventActivate(fds[i].fd, WriteEvent);
+    if (m_fds[i].revents & EPOLLOUT) {
+      m_evLoop->eventActivate(m_fds[i].fd, (int)FDEvent::WriteEvent);
     }
   }
 }
-int PollDispatcher::clear(EventLoop *evLoop) { return 0; }
-PollDispatcher::~PollDispatcher() {}
+PollDispatcher::~PollDispatcher() { delete[] m_fds; }

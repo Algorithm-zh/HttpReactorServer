@@ -6,15 +6,15 @@
 class ThreadPool {
 public:
   ThreadPool(EventLoop *mainLoop, int count);
-  static ThreadPool *threadPoolInit(EventLoop *mainLoop, int count);
-  void threadPoolRun();
+  ~ThreadPool();
+  void run();
   // 取出线程池中某个子线程的反应堆实例
   EventLoop *takeWorkerEventLoop();
 
 private:
-  EventLoop *mainLoop;
-  bool isStart;
-  int threadNum;
-  std::vector<WorkerThread *> workerThreads;
-  int index;
+  EventLoop *m_mainLoop;
+  bool m_isStart;
+  int m_threadNum;
+  std::vector<WorkerThread *> m_workerThreads;
+  int m_index;
 };

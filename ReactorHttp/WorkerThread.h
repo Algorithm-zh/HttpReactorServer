@@ -7,18 +7,19 @@ class WorkerThread {
 public:
   // 初始化
   WorkerThread(int index);
-  static WorkerThread *workerThreadInit(int index); // index为了起名字用的
+  ~WorkerThread();
   // 启动线程
-  void workerThreadRun();
+  void run();
   // 子线程的回调函数
-  static void subThreadRunning(void *arg);
-  // 取出反应堆
-  EventLoop *getEventLoop();
+  void running();
+
+  inline EventLoop *getEventLoop() { return m_evLoop; }
 
 private:
-  EventLoop *evLoop;
-  std::thread mtheadID;
-  char name[24];
-  std::mutex mutex;
-  std::condition_variable cond;
+  EventLoop *m_evLoop;
+  std::thread::id m_theadID;
+  std::thread *m_thread;
+  std::string name;
+  std::mutex m_mutex;
+  std::condition_variable m_cond;
 };

@@ -1,18 +1,23 @@
 #pragma once
 #include "Channel.h"
 #include "EventLoop.h"
+#include <string>
 
 class EventLoop;
 // EventLoop包含Dispatcher和DispatcherData
 class Dispatcher {
 public:
+  // 使用多态时需要虚函数析构函数
+  Dispatcher(EventLoop *evLoop);
   virtual ~Dispatcher();
-  virtual int add(Channel *channel, EventLoop *evLoop) = 0;
-  virtual int modify(Channel *channel, EventLoop *evLoop) = 0;
-  virtual int remove(Channel *channel, EventLoop *evLoop) = 0;
-  virtual void dispatch(EventLoop *evLoop, int timeout) = 0;
-  virtual int clear(EventLoop *evLoop) = 0;
+  virtual int add() = 0;
+  virtual int modify() = 0;
+  virtual int remove() = 0;
+  virtual void dispatch(int timeout = 2) = 0;
+  inline void setChannel(Channel *channel) { m_channel = channel; }
 
 protected:
-  Dispatcher();
+  std::string m_name = std::string();
+  Channel *m_channel;
+  EventLoop *m_evLoop;
 };

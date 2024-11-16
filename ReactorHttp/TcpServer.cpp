@@ -1,6 +1,7 @@
 #include "TcpServer.h"
 #include "Channel.h"
 #include "EventLoop.h"
+#include "Log.h"
 #include "TcpConnection.h"
 #include "ThreadPool.h"
 #include <arpa/inet.h>
@@ -37,6 +38,7 @@ void TcpServer::tcpServerRun() {
   mainLoop->eventLoopAddTask(channel, ADD);
   // 启动反应堆模型
   mainLoop->eventLoopRun();
+  Debug("服务器程序启动");
 }
 
 // 初始化监听

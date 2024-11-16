@@ -1,26 +1,19 @@
 #include "Channel.h"
-Channel *Channel::channelInit(int fd, int events, handleFunc readCallback,
-                              handleFunc writeCallback,
-                              handleFunc destroyCallback, void *arg) {
-  return new Channel(fd, events, readCallback, writeCallback, destroyCallback,
-                     arg);
-}
-Channel::Channel(int fd, int events, handleFunc readCallback,
+Channel::Channel(int fd, FDEvent events, handleFunc readCallback,
                  handleFunc writeCallback, handleFunc destroyCallback,
                  void *arg)
-    : fd(fd), events(events), readCallback(readCallback),
-      writeCallback(writeCallback), destroyCallback(destroyCallback), arg(arg) {
-}
+    : m_fd(fd), m_events((int)events), readCallback(readCallback),
+      writeCallback(writeCallback), destroyCallback(destroyCallback),
+      m_arg(arg) {}
 
-void Channel::writeEventEnable(Channel *channel, bool flag) {
+void Channel::writeEventEnable(bool flag) {
   if (flag)
-    channel->events |= WriteEvent; // 检测写事件
+    m_events |= static_cast<int>(FDEvent::WriteEvent); // 检测写事件
+  // c++类型转换
   else
-    channel->events = channel->events & ~WriteEvent; // 设置不检测写事件
+    m_events =
+        m_events & ~static_cast<int>(FDEvent::WriteEvent); // 不检测写事件
 }
-bool Channel::isWriteEventEnable(Channel *channel) {
-  return channel->events & WriteEvent;
+bool Channel::isWriteEventEnable() {
+  return m_events & static_cast<int>(FDEvent::WriteEvent);
 }
-int Channel::getFd() { return fd; }
-
-int Channel::getEvents() { return events; };
