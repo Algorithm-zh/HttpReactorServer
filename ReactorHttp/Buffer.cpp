@@ -8,62 +8,69 @@
 #include <unistd.h>
 
 Buffer::Buffer(int size) {
-  data = (char *)malloc(size);
-  capacity = size;
-  writePos = readPos = 0;
-  memset(data, 0, size);
+  // 为了扩容操作所以使用malloc
+  m_data = (char *)malloc(size);
+  m_capacity = size;
+  m_writePos = m_readPos = 0;
+  memset(m_data, 0, size);
 }
-Buffer *Buffer::bufferInit(int size) { return new Buffer(size); }
-void Buffer::bufferDestory() {
-  if (data != nullptr)
-    free(data);
+Buffer::~Buffer() {
+  if (m_data != nullptr)
+    free(m_data);
 }
-int Buffer::bufferWriteableSize() { return capacity - writePos; }
-int Buffer::bufferReadableSize() { return writePos - readPos; }
-void Buffer::bufferExtendRoom(int size) {
+
+void Buffer::extendRoom(int size) {
   // 1.内存够用-不用扩容
-  if (bufferWriteableSize() >= size)
+  if (writeableSize() >= size)
     return;
   // 2.内存需要合并才够用-不用扩容
   // 剩余的可写的内存 + 已读的内存 >= size
-  else if (bufferWriteableSize() + readPos >= size) {
+  else if (writeableSize() + m_readPos >= size) {
     // 把没读的内存放到前面
-    int readable = bufferReadableSize();
+    int readable = readableSize();
     // 移动内存
-    memcpy(data, data + readPos, readable);
+    memcpy(m_data, m_data + m_readPos, readable);
     // 更新readPos和writePos
-    readPos = 0;
-    writePos = readable;
+    m_readPos = 0;
+    m_writePos = readable;
   }
   // 3.内存不够用-需要扩容
   else {
-    char *tmp = (char *)realloc(data, capacity + size);
+    char *tmp = (char *)realloc(m_data, m_capacity + size);
     if (tmp == nullptr)
       return;
-    memset(tmp + capacity, 0, size);
-    data = tmp;
-    capacity += size;
+    memset(tmp + m_capacity, 0, size);
+    m_data = tmp;
+    m_capacity += size;
   }
 }
-int Buffer::bufferAppendData(const char *data, int size) {
+
+int Buffer::appendString(const char *data, int size) {
   if (data == nullptr || size <= 0)
     return -1;
   // 扩容(or判断内存够用否)
-  bufferExtendRoom(size);
+  extendRoom(size);
   // 拷贝
-  memcpy(this->data + writePos, data, size);
-  writePos += size;
+  memcpy(m_data + m_writePos, data, size);
+  m_writePos += size;
   return 0;
 }
-int Buffer::bufferAppendString(const char *data) {
+
+int Buffer::appendString(const char *data) {
   int size = strlen(data);
-  int ret = bufferAppendData(data, size);
+  int ret = appendString(data, size);
   return ret;
 }
-int Buffer::bufferSocketRead(int fd) {
+
+int Buffer::appendString(const std::string data) {
+  int ret = appendString(data);
+  return ret;
+}
+
+int Buffer::socketRead(int fd) {
   struct iovec vec[2];
-  int writeable = bufferWriteableSize();
-  vec[0].iov_base = data + writePos;
+  int writeable = writeableSize();
+  vec[0].iov_base = m_data + m_writePos;
   vec[0].iov_len = writeable;
   char *tmpbuf = (char *)malloc(40960);
   vec[1].iov_base = tmpbuf;
@@ -73,32 +80,33 @@ int Buffer::bufferSocketRead(int fd) {
     return -1;
   else if (result <= writeable) {
     // buffer够用直接移动指针
-    writePos += result;
+    m_writePos += result;
   } else {
     // buffer够用，被写到了tmpbuf里了，写到buf里并且需要进行扩容
-    writeable = capacity; // buf已经被写满
-    bufferAppendData(tmpbuf, result - writeable);
+    writeable = m_capacity; // buf已经被写满
+    appendString(tmpbuf, result - writeable);
   }
   free(tmpbuf);
   return result;
 }
 
-char *Buffer::bufferFindCRLF() {
+char *Buffer::findCRLF() {
   // strstr. 大字符串中匹配子字符串（遇到\0结束）
   // memmem. 大数据快中匹配子数据块（需要指定各数据块大小,所以不会遇到\0结束）
-  void *ptr = memmem(data + readPos, bufferReadableSize(), "\r\n", 2);
+  void *ptr = memmem(m_data + m_readPos, readableSize(), "\r\n", 2);
   return (char *)ptr;
 }
 
-int Buffer::bufferSendData(int socket) {
+int Buffer::sendData(int socket) {
   // 判断有无数据
-  int readable = bufferReadableSize();
+  int readable = readableSize();
   if (readable > 0) {
-    int count = send(socket, data + readPos, readable, 0);
+    int count = send(socket, m_data + m_readPos, readable, 0);
     if (count > 0) {
-      readPos += count;
+      m_readPos += count;
       usleep(1);
     }
     return count;
   }
+  return 0;
 }

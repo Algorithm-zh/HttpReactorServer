@@ -1,30 +1,24 @@
 #pragma once
 #include "EventLoop.h"
 #include "ThreadPool.h"
-class Listner {
 
-public:
-  Listner(unsigned short port);
-  static Listner *listnerInit(unsigned short port);
-  int getFd() { return lfd; };
-
-private:
-  int lfd;
-  unsigned short port;
-};
 class TcpServer {
 public:
   TcpServer(unsigned short port, int threadNum);
-  // 初始化
-  static TcpServer *TcpServerInit(unsigned short port, int threadNum);
+  ~TcpServer();
+  // 初始化监听
+  void setListen();
   // 启动服务器
-  void tcpServerRun();
+  void run();
   // 建立连接
-  static int acceptConnection(void *arg);
+  int acceptConnection();
+
+  int getFd() { return m_lfd; };
 
 private:
-  EventLoop *mainLoop;
-  ThreadPool *threadPool;
-  Listner *listner;
-  int threadNum;
+  EventLoop *m_mainLoop;
+  ThreadPool *m_threadPool;
+  int m_threadNum;
+  int m_lfd;
+  unsigned short m_port;
 };

@@ -2,14 +2,13 @@
 
 #include "Buffer.h"
 #include "HttpResponse.h"
-class RequestHeader {
+#include <cstdlib>
+#include <functional>
+#include <map>
+#include <string>
 
-public:
-  char *key;
-  char *value;
-};
 // 当前的解析状态
-enum HttpRequestState {
+enum class processState : char {
   ParseReqLine,
   ParseReqHeaders,
   ParseReqBody,
@@ -18,44 +17,47 @@ enum HttpRequestState {
 class HttpRequest {
 public:
   HttpRequest();
-  static HttpRequest *httpRequestInit();
   // 重置
-  void httpRequestReset();
-  // 重置时释放内存
-  void httpRequestResetEx();
+  void reset();
   // 结束时释放内存
-  void httpRequestDestroy();
+  void destroy();
   // 获取处理状态
-  enum HttpRequestState httpRequestState();
+  inline processState getState() { return m_curState; }
   // 添加请求头
-  void httpRequestAddHeader(const char *key, const char *value);
+  void addHeader(std::string key, std::string value);
   // 根据key值得到请求头的value
-  char *httpRequestGetHeader(const char *key);
+  std::string getHeader(std::string key);
   // 解析请求行
-  bool parseHttpRequestLine(Buffer *readBuf);
-  // 拆分请求行
-  char *splitRequestLine(const char *start, const char *end, const char *sub,
-                         char **ptr);
+  bool parseRequestLine(Buffer *readBuf);
   // 解析请求头
-  bool parseHttpRequestHeader(Buffer *readBuf);
+  bool parseRequestHeader(Buffer *readBuf);
   // 解析http请求协议
   bool parseHttpRequest(Buffer *readBuf, HttpResponse *response,
                         Buffer *sendBuf, int socket);
   // 处理http请求
   bool processHttpRequest(HttpResponse *response);
-  void decodeMsg(char *to, char *from);
-  int hexToDec(char c);
-  const char *getFileType(const char *name);
-  static void sendFile(const char *fileName, Buffer *sendBuf, int cfd);
-  static void sendDir(const char *dirName, Buffer *sendBuf, int cfd);
+  std::string decodeMsg(std::string from);
+  const std::string getFileType(const std::string name);
+  void sendFile(std::string fileName, Buffer *sendBuf, int cfd);
+  void sendDir(std::string dirName, Buffer *sendBuf, int cfd);
+
+  inline void setState(processState state) { m_curState = state; }
+
+  // 作为下面参数的callback
+  inline void setMethod(std::string method) { m_method = method; }
+  inline void setUrl(std::string url) { m_url = url; }
+  inline void setVersion(std::string version) { m_version = version; }
 
 private:
+  // 拆分请求行
+  char *splitRequestLine(const char *start, const char *end, const char *sub,
+                         std::function<void(std::string)> callback);
+  int hexToDec(char c);
+
   // 请求行
-  char *method;
-  char *url;
-  char *version;
-  // 请求头
-  RequestHeader *reqHeaders;
-  int reqHeadersNum;
-  enum HttpRequestState curState;
+  std::string m_method;
+  std::string m_url;
+  std::string m_version;
+  std::map<std::string, std::string> m_reqHeaders;
+  processState m_curState;
 };

@@ -43,9 +43,14 @@ int SelectDispatcher::add() {
   return 0;
 }
 int SelectDispatcher::modify() {
-
-  setFdSet();
-  clearFdSet();
+  if (m_channel->getEvents() & (int)FDEvent::ReadEvent) {
+    FD_SET(m_channel->getFd(), &m_readSet);
+    FD_CLR(m_channel->getFd(), &m_writeSet);
+  }
+  if (m_channel->getEvents() & (int)FDEvent::WriteEvent) {
+    FD_SET(m_channel->getFd(), &m_writeSet);
+    FD_CLR(m_channel->getFd(), &m_readSet);
+  }
   return 0;
 }
 int SelectDispatcher::remove() {

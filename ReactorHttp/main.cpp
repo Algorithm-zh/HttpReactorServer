@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
   // 启动服务器啊
   Debug("开始运行");
 
-  TcpServer *server = TcpServer::TcpServerInit(port, 4);
-  server->tcpServerRun();
+  TcpServer *server = new TcpServer(port, 4);
+  server->run();
   return 0;
 }

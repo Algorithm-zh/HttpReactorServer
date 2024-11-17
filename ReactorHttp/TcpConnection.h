@@ -4,23 +4,22 @@
 #include "EventLoop.h"
 #include "HttpRequest.h"
 #include "HttpResponse.h"
-#define MSG_SEND_AUTO
+// #define MSG_SEND_AUTO
 class TcpConnection {
 public:
-  TcpConnection(int fd, EventLoop *evLoop);
   // TcpConnection的EventLoop来自子线程
-  static TcpConnection *tcpConnectionInit(int fd, EventLoop *evLoop);
+  TcpConnection(int fd, EventLoop *evLoop);
+  ~TcpConnection();
   static int processRead(void *arg);
   static int processWrite(void *arg);
-  static int tcpConnectionDestroy(void *arg);
-
-  HttpRequest *request;
-  HttpResponse *response;
+  static int destroy(void *arg);
 
 private:
-  EventLoop *evLoop;
-  Channel *channel;
-  Buffer *readBuf;
-  Buffer *writeBuf;
-  char name[32];
+  EventLoop *m_evLoop;
+  Channel *m_channel;
+  Buffer *m_readBuf;
+  Buffer *m_writeBuf;
+  std::string m_name;
+  HttpRequest *m_request;
+  HttpResponse *m_response;
 };

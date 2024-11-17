@@ -1,47 +1,45 @@
 #include "HttpResponse.h"
+#include "Log.h"
 #include "TcpConnection.h"
 #include <cstdio>
 #include <cstring>
+#include <string>
 #include <strings.h>
+#include <utility>
 
-HttpResponse *HttpResponse::httpResponseInit() { return new HttpResponse(); }
 HttpResponse::HttpResponse() {
-  headerNum = 0;
-  headers = new ResponseHeader[ResHeaderSize];
-  statusCode = Unknown;
-  // 初始化数组,以下这两个函数都可以
-  memset(headers, 0, sizeof(ResponseHeader) * ResHeaderSize);
-  memset(fileName, 0, sizeof(fileName));
-  bzero(statusMsg, sizeof(statusMsg));
-  // 函数指针
+  m_headers.clear();
+  m_statusCode = statusCode::Unknown;
+  m_fileName = std::string();
   sendDataFunc = nullptr;
 }
 
-void HttpResponse::httpResonseDestroy() { delete headers; }
+HttpResponse::~HttpResponse() {}
 
-void HttpResponse::httpResponseAddHeader(const char *key, const char *value) {
-  if (key == nullptr || value == nullptr)
+void HttpResponse::addHeader(const std::string key, const std::string value) {
+  if (key.empty() || value.empty())
     return;
-  strcpy(headers[headerNum].key, key);
-  strcpy(headers[headerNum].value, value);
-  headerNum++;
+  m_headers.insert(std::make_pair(key, value));
 }
 
-void HttpResponse::httpResonsePrepareMsg(Buffer *sendBuf, int socket) {
+void HttpResponse::prepareMsg(Buffer *sendBuf, int socket) {
   // 状态行
   char tmp[1024] = {0};
-  sprintf(tmp, "HTTP/1.1 %d %s\r\n", statusCode, statusMsg);
-  sendBuf->bufferAppendString(tmp);
+  int code = static_cast<int>(m_statusCode);
+  sprintf(tmp, "HTTP/1.1 %d %s\r\n", code, m_info.at(code).data());
+  sendBuf->appendString(tmp);
+  Debug("状态行");
   // 响应头
-  for (int i = 0; i < headerNum; i++) {
-    sprintf(tmp, "%s: %s\r\n", headers->key, headers->value);
-    sendBuf->bufferAppendString(tmp);
+  for (auto it : m_headers) {
+    sprintf(tmp, "%s: %s\r\n", it.first.data(), it.second.data());
+    sendBuf->appendString(tmp);
   }
+  Debug("响应头");
   // 空行
-  sendBuf->bufferAppendString("\r\n");
+  sendBuf->appendString("\r\n");
 #ifndef MSG_SEND_AUTO
-  sendBuf->bufferSendData(socket);
+  sendBuf->sendData(socket);
 #endif // !MSG_SEND_AUTO
   // 回复的数据
-  sendDataFunc(fileName, sendBuf, socket);
+  sendDataFunc(m_fileName, sendBuf, socket);
 }
