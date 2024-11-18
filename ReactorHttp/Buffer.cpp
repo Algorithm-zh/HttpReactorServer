@@ -82,7 +82,7 @@ int Buffer::socketRead(int fd) {
     // buffer够用直接移动指针
     m_writePos += result;
   } else {
-    // buffer够用，被写到了tmpbuf里了，写到buf里并且需要进行扩容
+    // buffer不够用，被写到了tmpbuf里了，写到buf里并且需要进行扩容
     writeable = m_capacity; // buf已经被写满
     appendString(tmpbuf, result - writeable);
   }

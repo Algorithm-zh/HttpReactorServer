@@ -34,6 +34,7 @@ int EpollDispatcher::epollCtl(int op) {
   int ret = epoll_ctl(m_epfd, op, m_channel->getFd(), &ev);
   return ret;
 }
+
 int EpollDispatcher::add() {
   int ret = epollCtl(EPOLL_CTL_ADD);
   if (ret == -1) {
@@ -42,6 +43,7 @@ int EpollDispatcher::add() {
   }
   return ret;
 }
+
 int EpollDispatcher::modify() {
   int ret = epollCtl(EPOLL_CTL_MOD);
   if (ret == -1) {
@@ -50,6 +52,7 @@ int EpollDispatcher::modify() {
   }
   return ret;
 }
+
 int EpollDispatcher::remove() {
   int ret = epollCtl(EPOLL_CTL_DEL);
   if (ret == -1) {
@@ -60,6 +63,7 @@ int EpollDispatcher::remove() {
       const_cast<void *>(m_channel->getArg())); // arg为TcpConnection*
   return ret;
 }
+
 void EpollDispatcher::dispatch(int timeout) {
 
   int count = epoll_wait(m_epfd, m_events, m_maxNode, timeout * 1000);
@@ -78,6 +82,7 @@ void EpollDispatcher::dispatch(int timeout) {
     }
   }
 }
+
 EpollDispatcher::~EpollDispatcher() {
   close(m_epfd);
   delete[] m_events;

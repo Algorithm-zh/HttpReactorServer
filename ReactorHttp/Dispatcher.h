@@ -19,5 +19,6 @@ public:
 protected:
   std::string m_name = std::string();
   Channel *m_channel;
+  // 为什么要包含反应堆，因为要用到反应堆里的数据
   EventLoop *m_evLoop;
 };

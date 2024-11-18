@@ -183,6 +183,7 @@ bool HttpRequest::processHttpRequest(HttpResponse *response) {
 
   // 解析请求行
   // data方法将string转化为const char*类型
+  // 忽略大小写
   if (strcasecmp(m_method.data(), "get") != 0) {
     return -1; // 只解析get请求
   }

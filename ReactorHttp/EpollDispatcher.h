@@ -6,8 +6,6 @@ public:
   EpollDispatcher(EventLoop *evLoop);
   ~EpollDispatcher();
 
-  static EpollDispatcher *init();
-
   int add() override;
   int modify() override;
   int remove() override;

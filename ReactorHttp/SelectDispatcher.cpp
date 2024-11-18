@@ -42,6 +42,7 @@ int SelectDispatcher::add() {
   setFdSet();
   return 0;
 }
+
 int SelectDispatcher::modify() {
   if (m_channel->getEvents() & (int)FDEvent::ReadEvent) {
     FD_SET(m_channel->getFd(), &m_readSet);
@@ -53,12 +54,14 @@ int SelectDispatcher::modify() {
   }
   return 0;
 }
+
 int SelectDispatcher::remove() {
   clearFdSet();
   m_channel->destroyCallback(
       const_cast<void *>(m_channel->getArg())); // arg为TcpConnection*
   return 0;
 }
+
 void SelectDispatcher::dispatch(int timeout) {
 
   struct timeval val;
