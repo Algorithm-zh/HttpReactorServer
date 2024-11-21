@@ -63,7 +63,7 @@ CMAKE_BINARY_DIR = /home/zxe/Documents/HttpReactorServer/ReactorHttp
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/Server.dir/all
+all: CMakeFiles/Server.app.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,34 +71,34 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/Server.dir/clean
+clean: CMakeFiles/Server.app.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/Server.dir
+# Target rules for target CMakeFiles/Server.app.dir
 
 # All Build rule for target.
-CMakeFiles/Server.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zxe/Documents/HttpReactorServer/ReactorHttp/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 "Built target Server"
-.PHONY : CMakeFiles/Server.dir/all
+CMakeFiles/Server.app.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/zxe/Documents/HttpReactorServer/ReactorHttp/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 "Built target Server.app"
+.PHONY : CMakeFiles/Server.app.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/Server.dir/rule: cmake_check_build_system
+CMakeFiles/Server.app.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zxe/Documents/HttpReactorServer/ReactorHttp/CMakeFiles 15
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Server.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Server.app.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/zxe/Documents/HttpReactorServer/ReactorHttp/CMakeFiles 0
-.PHONY : CMakeFiles/Server.dir/rule
+.PHONY : CMakeFiles/Server.app.dir/rule
 
 # Convenience name for target.
-Server: CMakeFiles/Server.dir/rule
-.PHONY : Server
+Server.app: CMakeFiles/Server.app.dir/rule
+.PHONY : Server.app
 
 # clean rule for target.
-CMakeFiles/Server.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/clean
-.PHONY : CMakeFiles/Server.dir/clean
+CMakeFiles/Server.app.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/clean
+.PHONY : CMakeFiles/Server.app.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
