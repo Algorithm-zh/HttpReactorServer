@@ -13,6 +13,7 @@
 #include <sys/epoll.h>
 #include <sys/sendfile.h>
 #include <sys/stat.h>
+#include <thread>
 #include <unistd.h>
 
 int initListenFd(unsigned short port) {
@@ -74,9 +75,13 @@ int epollRun(int lfd) {
       if (fd == lfd) {
         // 建立新链接，调用accept
         acceptClient(lfd, epfd);
+        std::thread t1(acceptClient, lfd, epfd);
+        t1.detach();
       } else {
         // 主要是接收对端的数据
-        recvHttpRequest(fd, epfd);
+        // recvHttpRequest(fd, epfd);
+        std::thread t2(recvHttpRequest, fd, epfd);
+        t2.detach();
       }
     }
   }
