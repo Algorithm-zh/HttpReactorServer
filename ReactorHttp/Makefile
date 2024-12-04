@@ -129,317 +129,70 @@ Server.app/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/build
 .PHONY : Server.app/fast
 
-Buffer.o: Buffer.cpp.o
-.PHONY : Buffer.o
-
-# target to build an object file
-Buffer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/Buffer.cpp.o
-.PHONY : Buffer.cpp.o
-
-Buffer.i: Buffer.cpp.i
-.PHONY : Buffer.i
-
-# target to preprocess a source file
-Buffer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/Buffer.cpp.i
-.PHONY : Buffer.cpp.i
-
-Buffer.s: Buffer.cpp.s
-.PHONY : Buffer.s
-
-# target to generate assembly for a file
-Buffer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/Buffer.cpp.s
-.PHONY : Buffer.cpp.s
-
-Channel.o: Channel.cpp.o
-.PHONY : Channel.o
-
-# target to build an object file
-Channel.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/Channel.cpp.o
-.PHONY : Channel.cpp.o
-
-Channel.i: Channel.cpp.i
-.PHONY : Channel.i
-
-# target to preprocess a source file
-Channel.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/Channel.cpp.i
-.PHONY : Channel.cpp.i
-
-Channel.s: Channel.cpp.s
-.PHONY : Channel.s
-
-# target to generate assembly for a file
-Channel.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/Channel.cpp.s
-.PHONY : Channel.cpp.s
-
-Dispatcher.o: Dispatcher.cpp.o
-.PHONY : Dispatcher.o
-
-# target to build an object file
-Dispatcher.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/Dispatcher.cpp.o
-.PHONY : Dispatcher.cpp.o
-
-Dispatcher.i: Dispatcher.cpp.i
-.PHONY : Dispatcher.i
-
-# target to preprocess a source file
-Dispatcher.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/Dispatcher.cpp.i
-.PHONY : Dispatcher.cpp.i
-
-Dispatcher.s: Dispatcher.cpp.s
-.PHONY : Dispatcher.s
-
-# target to generate assembly for a file
-Dispatcher.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/Dispatcher.cpp.s
-.PHONY : Dispatcher.cpp.s
-
-EpollDispatcher.o: EpollDispatcher.cpp.o
-.PHONY : EpollDispatcher.o
-
-# target to build an object file
-EpollDispatcher.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/EpollDispatcher.cpp.o
-.PHONY : EpollDispatcher.cpp.o
-
-EpollDispatcher.i: EpollDispatcher.cpp.i
-.PHONY : EpollDispatcher.i
-
-# target to preprocess a source file
-EpollDispatcher.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/EpollDispatcher.cpp.i
-.PHONY : EpollDispatcher.cpp.i
-
-EpollDispatcher.s: EpollDispatcher.cpp.s
-.PHONY : EpollDispatcher.s
-
-# target to generate assembly for a file
-EpollDispatcher.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/EpollDispatcher.cpp.s
-.PHONY : EpollDispatcher.cpp.s
-
-EventLoop.o: EventLoop.cpp.o
-.PHONY : EventLoop.o
-
-# target to build an object file
-EventLoop.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/EventLoop.cpp.o
-.PHONY : EventLoop.cpp.o
-
-EventLoop.i: EventLoop.cpp.i
-.PHONY : EventLoop.i
-
-# target to preprocess a source file
-EventLoop.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/EventLoop.cpp.i
-.PHONY : EventLoop.cpp.i
-
-EventLoop.s: EventLoop.cpp.s
-.PHONY : EventLoop.s
-
-# target to generate assembly for a file
-EventLoop.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/EventLoop.cpp.s
-.PHONY : EventLoop.cpp.s
-
-HttpRequest.o: HttpRequest.cpp.o
-.PHONY : HttpRequest.o
-
-# target to build an object file
-HttpRequest.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/HttpRequest.cpp.o
-.PHONY : HttpRequest.cpp.o
-
-HttpRequest.i: HttpRequest.cpp.i
-.PHONY : HttpRequest.i
-
-# target to preprocess a source file
-HttpRequest.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/HttpRequest.cpp.i
-.PHONY : HttpRequest.cpp.i
-
-HttpRequest.s: HttpRequest.cpp.s
-.PHONY : HttpRequest.s
-
-# target to generate assembly for a file
-HttpRequest.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/HttpRequest.cpp.s
-.PHONY : HttpRequest.cpp.s
-
-HttpResponse.o: HttpResponse.cpp.o
-.PHONY : HttpResponse.o
-
-# target to build an object file
-HttpResponse.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/HttpResponse.cpp.o
-.PHONY : HttpResponse.cpp.o
-
-HttpResponse.i: HttpResponse.cpp.i
-.PHONY : HttpResponse.i
-
-# target to preprocess a source file
-HttpResponse.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/HttpResponse.cpp.i
-.PHONY : HttpResponse.cpp.i
-
-HttpResponse.s: HttpResponse.cpp.s
-.PHONY : HttpResponse.s
-
-# target to generate assembly for a file
-HttpResponse.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/HttpResponse.cpp.s
-.PHONY : HttpResponse.cpp.s
-
-PollDispatcher.o: PollDispatcher.cpp.o
-.PHONY : PollDispatcher.o
-
-# target to build an object file
-PollDispatcher.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/PollDispatcher.cpp.o
-.PHONY : PollDispatcher.cpp.o
-
-PollDispatcher.i: PollDispatcher.cpp.i
-.PHONY : PollDispatcher.i
-
-# target to preprocess a source file
-PollDispatcher.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/PollDispatcher.cpp.i
-.PHONY : PollDispatcher.cpp.i
-
-PollDispatcher.s: PollDispatcher.cpp.s
-.PHONY : PollDispatcher.s
-
-# target to generate assembly for a file
-PollDispatcher.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/PollDispatcher.cpp.s
-.PHONY : PollDispatcher.cpp.s
-
-SelectDispatcher.o: SelectDispatcher.cpp.o
-.PHONY : SelectDispatcher.o
-
-# target to build an object file
-SelectDispatcher.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/SelectDispatcher.cpp.o
-.PHONY : SelectDispatcher.cpp.o
-
-SelectDispatcher.i: SelectDispatcher.cpp.i
-.PHONY : SelectDispatcher.i
-
-# target to preprocess a source file
-SelectDispatcher.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/SelectDispatcher.cpp.i
-.PHONY : SelectDispatcher.cpp.i
-
-SelectDispatcher.s: SelectDispatcher.cpp.s
-.PHONY : SelectDispatcher.s
-
-# target to generate assembly for a file
-SelectDispatcher.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/SelectDispatcher.cpp.s
-.PHONY : SelectDispatcher.cpp.s
-
-TcpConnection.o: TcpConnection.cpp.o
-.PHONY : TcpConnection.o
-
-# target to build an object file
-TcpConnection.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/TcpConnection.cpp.o
-.PHONY : TcpConnection.cpp.o
-
-TcpConnection.i: TcpConnection.cpp.i
-.PHONY : TcpConnection.i
-
-# target to preprocess a source file
-TcpConnection.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/TcpConnection.cpp.i
-.PHONY : TcpConnection.cpp.i
-
-TcpConnection.s: TcpConnection.cpp.s
-.PHONY : TcpConnection.s
-
-# target to generate assembly for a file
-TcpConnection.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/TcpConnection.cpp.s
-.PHONY : TcpConnection.cpp.s
-
-TcpServer.o: TcpServer.cpp.o
-.PHONY : TcpServer.o
-
-# target to build an object file
-TcpServer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/TcpServer.cpp.o
-.PHONY : TcpServer.cpp.o
-
-TcpServer.i: TcpServer.cpp.i
-.PHONY : TcpServer.i
-
-# target to preprocess a source file
-TcpServer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/TcpServer.cpp.i
-.PHONY : TcpServer.cpp.i
-
-TcpServer.s: TcpServer.cpp.s
-.PHONY : TcpServer.s
-
-# target to generate assembly for a file
-TcpServer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/TcpServer.cpp.s
-.PHONY : TcpServer.cpp.s
-
-ThreadPool.o: ThreadPool.cpp.o
-.PHONY : ThreadPool.o
-
-# target to build an object file
-ThreadPool.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/ThreadPool.cpp.o
-.PHONY : ThreadPool.cpp.o
-
-ThreadPool.i: ThreadPool.cpp.i
-.PHONY : ThreadPool.i
-
-# target to preprocess a source file
-ThreadPool.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/ThreadPool.cpp.i
-.PHONY : ThreadPool.cpp.i
-
-ThreadPool.s: ThreadPool.cpp.s
-.PHONY : ThreadPool.s
-
-# target to generate assembly for a file
-ThreadPool.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/ThreadPool.cpp.s
-.PHONY : ThreadPool.cpp.s
-
-WorkerThread.o: WorkerThread.cpp.o
-.PHONY : WorkerThread.o
-
-# target to build an object file
-WorkerThread.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/WorkerThread.cpp.o
-.PHONY : WorkerThread.cpp.o
-
-WorkerThread.i: WorkerThread.cpp.i
-.PHONY : WorkerThread.i
-
-# target to preprocess a source file
-WorkerThread.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/WorkerThread.cpp.i
-.PHONY : WorkerThread.cpp.i
-
-WorkerThread.s: WorkerThread.cpp.s
-.PHONY : WorkerThread.s
-
-# target to generate assembly for a file
-WorkerThread.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Server.app.dir/build.make CMakeFiles/Server.app.dir/WorkerThread.cpp.s
-.PHONY : WorkerThread.cpp.s
+#=============================================================================
+# Target rules for targets named common
+
+# Build rule for target.
+common: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 common
+.PHONY : common
+
+# fast build rule for target.
+common/fast:
+	$(MAKE) $(MAKESILENT) -f common/CMakeFiles/common.dir/build.make common/CMakeFiles/common.dir/build
+.PHONY : common/fast
+
+#=============================================================================
+# Target rules for targets named http
+
+# Build rule for target.
+http: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 http
+.PHONY : http
+
+# fast build rule for target.
+http/fast:
+	$(MAKE) $(MAKESILENT) -f http/CMakeFiles/http.dir/build.make http/CMakeFiles/http.dir/build
+.PHONY : http/fast
+
+#=============================================================================
+# Target rules for targets named reactor
+
+# Build rule for target.
+reactor: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 reactor
+.PHONY : reactor
+
+# fast build rule for target.
+reactor/fast:
+	$(MAKE) $(MAKESILENT) -f reactor/CMakeFiles/reactor.dir/build.make reactor/CMakeFiles/reactor.dir/build
+.PHONY : reactor/fast
+
+#=============================================================================
+# Target rules for targets named tcp
+
+# Build rule for target.
+tcp: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tcp
+.PHONY : tcp
+
+# fast build rule for target.
+tcp/fast:
+	$(MAKE) $(MAKESILENT) -f tcp/CMakeFiles/tcp.dir/build.make tcp/CMakeFiles/tcp.dir/build
+.PHONY : tcp/fast
+
+#=============================================================================
+# Target rules for targets named thread
+
+# Build rule for target.
+thread: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 thread
+.PHONY : thread
+
+# fast build rule for target.
+thread/fast:
+	$(MAKE) $(MAKESILENT) -f thread/CMakeFiles/thread.dir/build.make thread/CMakeFiles/thread.dir/build
+.PHONY : thread/fast
 
 main.o: main.cpp.o
 .PHONY : main.o
@@ -474,45 +227,11 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Server.app"
-	@echo "... Buffer.o"
-	@echo "... Buffer.i"
-	@echo "... Buffer.s"
-	@echo "... Channel.o"
-	@echo "... Channel.i"
-	@echo "... Channel.s"
-	@echo "... Dispatcher.o"
-	@echo "... Dispatcher.i"
-	@echo "... Dispatcher.s"
-	@echo "... EpollDispatcher.o"
-	@echo "... EpollDispatcher.i"
-	@echo "... EpollDispatcher.s"
-	@echo "... EventLoop.o"
-	@echo "... EventLoop.i"
-	@echo "... EventLoop.s"
-	@echo "... HttpRequest.o"
-	@echo "... HttpRequest.i"
-	@echo "... HttpRequest.s"
-	@echo "... HttpResponse.o"
-	@echo "... HttpResponse.i"
-	@echo "... HttpResponse.s"
-	@echo "... PollDispatcher.o"
-	@echo "... PollDispatcher.i"
-	@echo "... PollDispatcher.s"
-	@echo "... SelectDispatcher.o"
-	@echo "... SelectDispatcher.i"
-	@echo "... SelectDispatcher.s"
-	@echo "... TcpConnection.o"
-	@echo "... TcpConnection.i"
-	@echo "... TcpConnection.s"
-	@echo "... TcpServer.o"
-	@echo "... TcpServer.i"
-	@echo "... TcpServer.s"
-	@echo "... ThreadPool.o"
-	@echo "... ThreadPool.i"
-	@echo "... ThreadPool.s"
-	@echo "... WorkerThread.o"
-	@echo "... WorkerThread.i"
-	@echo "... WorkerThread.s"
+	@echo "... common"
+	@echo "... http"
+	@echo "... reactor"
+	@echo "... tcp"
+	@echo "... thread"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

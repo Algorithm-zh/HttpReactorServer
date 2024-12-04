@@ -95,8 +95,8 @@ CMAKE_EXE_LINKER_FLAGS_RELEASE:STRING=
 //Flags used by the linker during RELWITHDEBINFO builds.
 CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
-//Enable/Disable output of compile commands during generation.
-CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=
+//No help, variable specified on the command line.
+CMAKE_EXPORT_COMPILE_COMMANDS:UNINITIALIZED=1
 
 //Install path prefix, prepended onto install directories.
 CMAKE_INSTALL_PREFIX:PATH=/usr/local
@@ -225,6 +225,54 @@ Server_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 Server_SOURCE_DIR:STATIC=/home/zxe/Documents/HttpReactorServer/ReactorHttp
 
+//Value Computed by CMake
+common_BINARY_DIR:STATIC=/home/zxe/Documents/HttpReactorServer/ReactorHttp/common
+
+//Value Computed by CMake
+common_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+common_SOURCE_DIR:STATIC=/home/zxe/Documents/HttpReactorServer/ReactorHttp/common
+
+//Value Computed by CMake
+http_BINARY_DIR:STATIC=/home/zxe/Documents/HttpReactorServer/ReactorHttp/http
+
+//Value Computed by CMake
+http_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+http_SOURCE_DIR:STATIC=/home/zxe/Documents/HttpReactorServer/ReactorHttp/http
+
+//Value Computed by CMake
+reactor_BINARY_DIR:STATIC=/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor
+
+//Value Computed by CMake
+reactor_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+reactor_SOURCE_DIR:STATIC=/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor
+
+//Value Computed by CMake
+tcp_BINARY_DIR:STATIC=/home/zxe/Documents/HttpReactorServer/ReactorHttp/tcp
+
+//Value Computed by CMake
+tcp_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+tcp_SOURCE_DIR:STATIC=/home/zxe/Documents/HttpReactorServer/ReactorHttp/tcp
+
+//Value Computed by CMake
+thread_BINARY_DIR:STATIC=/home/zxe/Documents/HttpReactorServer/ReactorHttp/thread
+
+//Value Computed by CMake
+thread_IS_TOP_LEVEL:STATIC=OFF
+
+//Dependencies for the target
+thread_LIB_DEPENDS:STATIC=general;pthread;
+
+//Value Computed by CMake
+thread_SOURCE_DIR:STATIC=/home/zxe/Documents/HttpReactorServer/ReactorHttp/thread
+
 
 ########################
 # INTERNAL cache entries
@@ -330,7 +378,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

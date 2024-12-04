@@ -11,6 +11,11 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.22.1/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.22.1/CMakeSystem.cmake"
   "CMakeLists.txt"
+  "common/CMakeLists.txt"
+  "http/CMakeLists.txt"
+  "reactor/CMakeLists.txt"
+  "tcp/CMakeLists.txt"
+  "thread/CMakeLists.txt"
   "/usr/share/cmake-3.22/Modules/CMakeCInformation.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeCXXInformation.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake"
@@ -41,9 +46,19 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
+  "common/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "http/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "reactor/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "tcp/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "thread/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/Server.app.dir/DependInfo.cmake"
+  "common/CMakeFiles/common.dir/DependInfo.cmake"
+  "http/CMakeFiles/http.dir/DependInfo.cmake"
+  "reactor/CMakeFiles/reactor.dir/DependInfo.cmake"
+  "tcp/CMakeFiles/tcp.dir/DependInfo.cmake"
+  "thread/CMakeFiles/thread.dir/DependInfo.cmake"
   )

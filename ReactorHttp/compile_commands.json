@@ -1,0 +1,72 @@
+[
+{
+  "directory": "/home/zxe/Documents/HttpReactorServer/ReactorHttp",
+  "command": "/usr/bin/c++  -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/common -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/http -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/tcp -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/thread  -o CMakeFiles/Server.app.dir/main.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/main.cpp",
+  "file": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/main.cpp"
+},
+{
+  "directory": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/common",
+  "command": "/usr/bin/c++  -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/common -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/http -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/tcp -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/thread  -o CMakeFiles/common.dir/Buffer.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/common/Buffer.cpp",
+  "file": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/common/Buffer.cpp"
+},
+{
+  "directory": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/common",
+  "command": "/usr/bin/c++  -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/common -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/http -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/tcp -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/thread  -o CMakeFiles/common.dir/Channel.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/common/Channel.cpp",
+  "file": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/common/Channel.cpp"
+},
+{
+  "directory": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/http",
+  "command": "/usr/bin/c++  -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/common -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/http -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/tcp -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/thread  -o CMakeFiles/http.dir/HttpRequest.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/http/HttpRequest.cpp",
+  "file": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/http/HttpRequest.cpp"
+},
+{
+  "directory": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/http",
+  "command": "/usr/bin/c++  -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/common -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/http -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/tcp -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/thread  -o CMakeFiles/http.dir/HttpResponse.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/http/HttpResponse.cpp",
+  "file": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/http/HttpResponse.cpp"
+},
+{
+  "directory": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor",
+  "command": "/usr/bin/c++  -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/common -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/http -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/tcp -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/thread  -o CMakeFiles/reactor.dir/Dispatcher.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor/Dispatcher.cpp",
+  "file": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor/Dispatcher.cpp"
+},
+{
+  "directory": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor",
+  "command": "/usr/bin/c++  -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/common -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/http -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/tcp -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/thread  -o CMakeFiles/reactor.dir/EpollDispatcher.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor/EpollDispatcher.cpp",
+  "file": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor/EpollDispatcher.cpp"
+},
+{
+  "directory": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor",
+  "command": "/usr/bin/c++  -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/common -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/http -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/tcp -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/thread  -o CMakeFiles/reactor.dir/EventLoop.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor/EventLoop.cpp",
+  "file": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor/EventLoop.cpp"
+},
+{
+  "directory": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor",
+  "command": "/usr/bin/c++  -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/common -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/http -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/tcp -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/thread  -o CMakeFiles/reactor.dir/PollDispatcher.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor/PollDispatcher.cpp",
+  "file": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor/PollDispatcher.cpp"
+},
+{
+  "directory": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor",
+  "command": "/usr/bin/c++  -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/common -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/http -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/tcp -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/thread  -o CMakeFiles/reactor.dir/SelectDispatcher.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor/SelectDispatcher.cpp",
+  "file": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor/SelectDispatcher.cpp"
+},
+{
+  "directory": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/tcp",
+  "command": "/usr/bin/c++  -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/common -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/http -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/tcp -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/thread  -o CMakeFiles/tcp.dir/TcpConnection.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/tcp/TcpConnection.cpp",
+  "file": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/tcp/TcpConnection.cpp"
+},
+{
+  "directory": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/tcp",
+  "command": "/usr/bin/c++  -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/common -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/http -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/tcp -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/thread  -o CMakeFiles/tcp.dir/TcpServer.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/tcp/TcpServer.cpp",
+  "file": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/tcp/TcpServer.cpp"
+},
+{
+  "directory": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/thread",
+  "command": "/usr/bin/c++  -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/common -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/http -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/tcp -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/thread  -o CMakeFiles/thread.dir/ThreadPool.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/thread/ThreadPool.cpp",
+  "file": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/thread/ThreadPool.cpp"
+},
+{
+  "directory": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/thread",
+  "command": "/usr/bin/c++  -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/common -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/http -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/reactor -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/tcp -I/home/zxe/Documents/HttpReactorServer/ReactorHttp/thread  -o CMakeFiles/thread.dir/WorkerThread.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/thread/WorkerThread.cpp",
+  "file": "/home/zxe/Documents/HttpReactorServer/ReactorHttp/thread/WorkerThread.cpp"
+}
+]

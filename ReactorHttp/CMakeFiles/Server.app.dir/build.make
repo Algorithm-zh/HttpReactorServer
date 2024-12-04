@@ -69,192 +69,10 @@ include CMakeFiles/Server.app.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Server.app.dir/flags.make
 
-CMakeFiles/Server.app.dir/Buffer.cpp.o: CMakeFiles/Server.app.dir/flags.make
-CMakeFiles/Server.app.dir/Buffer.cpp.o: Buffer.cpp
-CMakeFiles/Server.app.dir/Buffer.cpp.o: CMakeFiles/Server.app.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/Documents/HttpReactorServer/ReactorHttp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Server.app.dir/Buffer.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Server.app.dir/Buffer.cpp.o -MF CMakeFiles/Server.app.dir/Buffer.cpp.o.d -o CMakeFiles/Server.app.dir/Buffer.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/Buffer.cpp
-
-CMakeFiles/Server.app.dir/Buffer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.app.dir/Buffer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zxe/Documents/HttpReactorServer/ReactorHttp/Buffer.cpp > CMakeFiles/Server.app.dir/Buffer.cpp.i
-
-CMakeFiles/Server.app.dir/Buffer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.app.dir/Buffer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zxe/Documents/HttpReactorServer/ReactorHttp/Buffer.cpp -o CMakeFiles/Server.app.dir/Buffer.cpp.s
-
-CMakeFiles/Server.app.dir/Channel.cpp.o: CMakeFiles/Server.app.dir/flags.make
-CMakeFiles/Server.app.dir/Channel.cpp.o: Channel.cpp
-CMakeFiles/Server.app.dir/Channel.cpp.o: CMakeFiles/Server.app.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/Documents/HttpReactorServer/ReactorHttp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Server.app.dir/Channel.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Server.app.dir/Channel.cpp.o -MF CMakeFiles/Server.app.dir/Channel.cpp.o.d -o CMakeFiles/Server.app.dir/Channel.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/Channel.cpp
-
-CMakeFiles/Server.app.dir/Channel.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.app.dir/Channel.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zxe/Documents/HttpReactorServer/ReactorHttp/Channel.cpp > CMakeFiles/Server.app.dir/Channel.cpp.i
-
-CMakeFiles/Server.app.dir/Channel.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.app.dir/Channel.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zxe/Documents/HttpReactorServer/ReactorHttp/Channel.cpp -o CMakeFiles/Server.app.dir/Channel.cpp.s
-
-CMakeFiles/Server.app.dir/Dispatcher.cpp.o: CMakeFiles/Server.app.dir/flags.make
-CMakeFiles/Server.app.dir/Dispatcher.cpp.o: Dispatcher.cpp
-CMakeFiles/Server.app.dir/Dispatcher.cpp.o: CMakeFiles/Server.app.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/Documents/HttpReactorServer/ReactorHttp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Server.app.dir/Dispatcher.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Server.app.dir/Dispatcher.cpp.o -MF CMakeFiles/Server.app.dir/Dispatcher.cpp.o.d -o CMakeFiles/Server.app.dir/Dispatcher.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/Dispatcher.cpp
-
-CMakeFiles/Server.app.dir/Dispatcher.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.app.dir/Dispatcher.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zxe/Documents/HttpReactorServer/ReactorHttp/Dispatcher.cpp > CMakeFiles/Server.app.dir/Dispatcher.cpp.i
-
-CMakeFiles/Server.app.dir/Dispatcher.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.app.dir/Dispatcher.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zxe/Documents/HttpReactorServer/ReactorHttp/Dispatcher.cpp -o CMakeFiles/Server.app.dir/Dispatcher.cpp.s
-
-CMakeFiles/Server.app.dir/EpollDispatcher.cpp.o: CMakeFiles/Server.app.dir/flags.make
-CMakeFiles/Server.app.dir/EpollDispatcher.cpp.o: EpollDispatcher.cpp
-CMakeFiles/Server.app.dir/EpollDispatcher.cpp.o: CMakeFiles/Server.app.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/Documents/HttpReactorServer/ReactorHttp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Server.app.dir/EpollDispatcher.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Server.app.dir/EpollDispatcher.cpp.o -MF CMakeFiles/Server.app.dir/EpollDispatcher.cpp.o.d -o CMakeFiles/Server.app.dir/EpollDispatcher.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/EpollDispatcher.cpp
-
-CMakeFiles/Server.app.dir/EpollDispatcher.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.app.dir/EpollDispatcher.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zxe/Documents/HttpReactorServer/ReactorHttp/EpollDispatcher.cpp > CMakeFiles/Server.app.dir/EpollDispatcher.cpp.i
-
-CMakeFiles/Server.app.dir/EpollDispatcher.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.app.dir/EpollDispatcher.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zxe/Documents/HttpReactorServer/ReactorHttp/EpollDispatcher.cpp -o CMakeFiles/Server.app.dir/EpollDispatcher.cpp.s
-
-CMakeFiles/Server.app.dir/EventLoop.cpp.o: CMakeFiles/Server.app.dir/flags.make
-CMakeFiles/Server.app.dir/EventLoop.cpp.o: EventLoop.cpp
-CMakeFiles/Server.app.dir/EventLoop.cpp.o: CMakeFiles/Server.app.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/Documents/HttpReactorServer/ReactorHttp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Server.app.dir/EventLoop.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Server.app.dir/EventLoop.cpp.o -MF CMakeFiles/Server.app.dir/EventLoop.cpp.o.d -o CMakeFiles/Server.app.dir/EventLoop.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/EventLoop.cpp
-
-CMakeFiles/Server.app.dir/EventLoop.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.app.dir/EventLoop.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zxe/Documents/HttpReactorServer/ReactorHttp/EventLoop.cpp > CMakeFiles/Server.app.dir/EventLoop.cpp.i
-
-CMakeFiles/Server.app.dir/EventLoop.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.app.dir/EventLoop.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zxe/Documents/HttpReactorServer/ReactorHttp/EventLoop.cpp -o CMakeFiles/Server.app.dir/EventLoop.cpp.s
-
-CMakeFiles/Server.app.dir/HttpRequest.cpp.o: CMakeFiles/Server.app.dir/flags.make
-CMakeFiles/Server.app.dir/HttpRequest.cpp.o: HttpRequest.cpp
-CMakeFiles/Server.app.dir/HttpRequest.cpp.o: CMakeFiles/Server.app.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/Documents/HttpReactorServer/ReactorHttp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Server.app.dir/HttpRequest.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Server.app.dir/HttpRequest.cpp.o -MF CMakeFiles/Server.app.dir/HttpRequest.cpp.o.d -o CMakeFiles/Server.app.dir/HttpRequest.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/HttpRequest.cpp
-
-CMakeFiles/Server.app.dir/HttpRequest.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.app.dir/HttpRequest.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zxe/Documents/HttpReactorServer/ReactorHttp/HttpRequest.cpp > CMakeFiles/Server.app.dir/HttpRequest.cpp.i
-
-CMakeFiles/Server.app.dir/HttpRequest.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.app.dir/HttpRequest.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zxe/Documents/HttpReactorServer/ReactorHttp/HttpRequest.cpp -o CMakeFiles/Server.app.dir/HttpRequest.cpp.s
-
-CMakeFiles/Server.app.dir/HttpResponse.cpp.o: CMakeFiles/Server.app.dir/flags.make
-CMakeFiles/Server.app.dir/HttpResponse.cpp.o: HttpResponse.cpp
-CMakeFiles/Server.app.dir/HttpResponse.cpp.o: CMakeFiles/Server.app.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/Documents/HttpReactorServer/ReactorHttp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Server.app.dir/HttpResponse.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Server.app.dir/HttpResponse.cpp.o -MF CMakeFiles/Server.app.dir/HttpResponse.cpp.o.d -o CMakeFiles/Server.app.dir/HttpResponse.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/HttpResponse.cpp
-
-CMakeFiles/Server.app.dir/HttpResponse.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.app.dir/HttpResponse.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zxe/Documents/HttpReactorServer/ReactorHttp/HttpResponse.cpp > CMakeFiles/Server.app.dir/HttpResponse.cpp.i
-
-CMakeFiles/Server.app.dir/HttpResponse.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.app.dir/HttpResponse.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zxe/Documents/HttpReactorServer/ReactorHttp/HttpResponse.cpp -o CMakeFiles/Server.app.dir/HttpResponse.cpp.s
-
-CMakeFiles/Server.app.dir/PollDispatcher.cpp.o: CMakeFiles/Server.app.dir/flags.make
-CMakeFiles/Server.app.dir/PollDispatcher.cpp.o: PollDispatcher.cpp
-CMakeFiles/Server.app.dir/PollDispatcher.cpp.o: CMakeFiles/Server.app.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/Documents/HttpReactorServer/ReactorHttp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Server.app.dir/PollDispatcher.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Server.app.dir/PollDispatcher.cpp.o -MF CMakeFiles/Server.app.dir/PollDispatcher.cpp.o.d -o CMakeFiles/Server.app.dir/PollDispatcher.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/PollDispatcher.cpp
-
-CMakeFiles/Server.app.dir/PollDispatcher.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.app.dir/PollDispatcher.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zxe/Documents/HttpReactorServer/ReactorHttp/PollDispatcher.cpp > CMakeFiles/Server.app.dir/PollDispatcher.cpp.i
-
-CMakeFiles/Server.app.dir/PollDispatcher.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.app.dir/PollDispatcher.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zxe/Documents/HttpReactorServer/ReactorHttp/PollDispatcher.cpp -o CMakeFiles/Server.app.dir/PollDispatcher.cpp.s
-
-CMakeFiles/Server.app.dir/SelectDispatcher.cpp.o: CMakeFiles/Server.app.dir/flags.make
-CMakeFiles/Server.app.dir/SelectDispatcher.cpp.o: SelectDispatcher.cpp
-CMakeFiles/Server.app.dir/SelectDispatcher.cpp.o: CMakeFiles/Server.app.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/Documents/HttpReactorServer/ReactorHttp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Server.app.dir/SelectDispatcher.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Server.app.dir/SelectDispatcher.cpp.o -MF CMakeFiles/Server.app.dir/SelectDispatcher.cpp.o.d -o CMakeFiles/Server.app.dir/SelectDispatcher.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/SelectDispatcher.cpp
-
-CMakeFiles/Server.app.dir/SelectDispatcher.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.app.dir/SelectDispatcher.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zxe/Documents/HttpReactorServer/ReactorHttp/SelectDispatcher.cpp > CMakeFiles/Server.app.dir/SelectDispatcher.cpp.i
-
-CMakeFiles/Server.app.dir/SelectDispatcher.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.app.dir/SelectDispatcher.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zxe/Documents/HttpReactorServer/ReactorHttp/SelectDispatcher.cpp -o CMakeFiles/Server.app.dir/SelectDispatcher.cpp.s
-
-CMakeFiles/Server.app.dir/TcpConnection.cpp.o: CMakeFiles/Server.app.dir/flags.make
-CMakeFiles/Server.app.dir/TcpConnection.cpp.o: TcpConnection.cpp
-CMakeFiles/Server.app.dir/TcpConnection.cpp.o: CMakeFiles/Server.app.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/Documents/HttpReactorServer/ReactorHttp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Server.app.dir/TcpConnection.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Server.app.dir/TcpConnection.cpp.o -MF CMakeFiles/Server.app.dir/TcpConnection.cpp.o.d -o CMakeFiles/Server.app.dir/TcpConnection.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/TcpConnection.cpp
-
-CMakeFiles/Server.app.dir/TcpConnection.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.app.dir/TcpConnection.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zxe/Documents/HttpReactorServer/ReactorHttp/TcpConnection.cpp > CMakeFiles/Server.app.dir/TcpConnection.cpp.i
-
-CMakeFiles/Server.app.dir/TcpConnection.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.app.dir/TcpConnection.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zxe/Documents/HttpReactorServer/ReactorHttp/TcpConnection.cpp -o CMakeFiles/Server.app.dir/TcpConnection.cpp.s
-
-CMakeFiles/Server.app.dir/TcpServer.cpp.o: CMakeFiles/Server.app.dir/flags.make
-CMakeFiles/Server.app.dir/TcpServer.cpp.o: TcpServer.cpp
-CMakeFiles/Server.app.dir/TcpServer.cpp.o: CMakeFiles/Server.app.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/Documents/HttpReactorServer/ReactorHttp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Server.app.dir/TcpServer.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Server.app.dir/TcpServer.cpp.o -MF CMakeFiles/Server.app.dir/TcpServer.cpp.o.d -o CMakeFiles/Server.app.dir/TcpServer.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/TcpServer.cpp
-
-CMakeFiles/Server.app.dir/TcpServer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.app.dir/TcpServer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zxe/Documents/HttpReactorServer/ReactorHttp/TcpServer.cpp > CMakeFiles/Server.app.dir/TcpServer.cpp.i
-
-CMakeFiles/Server.app.dir/TcpServer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.app.dir/TcpServer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zxe/Documents/HttpReactorServer/ReactorHttp/TcpServer.cpp -o CMakeFiles/Server.app.dir/TcpServer.cpp.s
-
-CMakeFiles/Server.app.dir/ThreadPool.cpp.o: CMakeFiles/Server.app.dir/flags.make
-CMakeFiles/Server.app.dir/ThreadPool.cpp.o: ThreadPool.cpp
-CMakeFiles/Server.app.dir/ThreadPool.cpp.o: CMakeFiles/Server.app.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/Documents/HttpReactorServer/ReactorHttp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Server.app.dir/ThreadPool.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Server.app.dir/ThreadPool.cpp.o -MF CMakeFiles/Server.app.dir/ThreadPool.cpp.o.d -o CMakeFiles/Server.app.dir/ThreadPool.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/ThreadPool.cpp
-
-CMakeFiles/Server.app.dir/ThreadPool.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.app.dir/ThreadPool.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zxe/Documents/HttpReactorServer/ReactorHttp/ThreadPool.cpp > CMakeFiles/Server.app.dir/ThreadPool.cpp.i
-
-CMakeFiles/Server.app.dir/ThreadPool.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.app.dir/ThreadPool.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zxe/Documents/HttpReactorServer/ReactorHttp/ThreadPool.cpp -o CMakeFiles/Server.app.dir/ThreadPool.cpp.s
-
-CMakeFiles/Server.app.dir/WorkerThread.cpp.o: CMakeFiles/Server.app.dir/flags.make
-CMakeFiles/Server.app.dir/WorkerThread.cpp.o: WorkerThread.cpp
-CMakeFiles/Server.app.dir/WorkerThread.cpp.o: CMakeFiles/Server.app.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/Documents/HttpReactorServer/ReactorHttp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Server.app.dir/WorkerThread.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Server.app.dir/WorkerThread.cpp.o -MF CMakeFiles/Server.app.dir/WorkerThread.cpp.o.d -o CMakeFiles/Server.app.dir/WorkerThread.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/WorkerThread.cpp
-
-CMakeFiles/Server.app.dir/WorkerThread.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Server.app.dir/WorkerThread.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zxe/Documents/HttpReactorServer/ReactorHttp/WorkerThread.cpp > CMakeFiles/Server.app.dir/WorkerThread.cpp.i
-
-CMakeFiles/Server.app.dir/WorkerThread.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Server.app.dir/WorkerThread.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zxe/Documents/HttpReactorServer/ReactorHttp/WorkerThread.cpp -o CMakeFiles/Server.app.dir/WorkerThread.cpp.s
-
 CMakeFiles/Server.app.dir/main.cpp.o: CMakeFiles/Server.app.dir/flags.make
 CMakeFiles/Server.app.dir/main.cpp.o: main.cpp
 CMakeFiles/Server.app.dir/main.cpp.o: CMakeFiles/Server.app.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/Documents/HttpReactorServer/ReactorHttp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/Server.app.dir/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zxe/Documents/HttpReactorServer/ReactorHttp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Server.app.dir/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Server.app.dir/main.cpp.o -MF CMakeFiles/Server.app.dir/main.cpp.o.d -o CMakeFiles/Server.app.dir/main.cpp.o -c /home/zxe/Documents/HttpReactorServer/ReactorHttp/main.cpp
 
 CMakeFiles/Server.app.dir/main.cpp.i: cmake_force
@@ -267,45 +85,24 @@ CMakeFiles/Server.app.dir/main.cpp.s: cmake_force
 
 # Object files for target Server.app
 Server_app_OBJECTS = \
-"CMakeFiles/Server.app.dir/Buffer.cpp.o" \
-"CMakeFiles/Server.app.dir/Channel.cpp.o" \
-"CMakeFiles/Server.app.dir/Dispatcher.cpp.o" \
-"CMakeFiles/Server.app.dir/EpollDispatcher.cpp.o" \
-"CMakeFiles/Server.app.dir/EventLoop.cpp.o" \
-"CMakeFiles/Server.app.dir/HttpRequest.cpp.o" \
-"CMakeFiles/Server.app.dir/HttpResponse.cpp.o" \
-"CMakeFiles/Server.app.dir/PollDispatcher.cpp.o" \
-"CMakeFiles/Server.app.dir/SelectDispatcher.cpp.o" \
-"CMakeFiles/Server.app.dir/TcpConnection.cpp.o" \
-"CMakeFiles/Server.app.dir/TcpServer.cpp.o" \
-"CMakeFiles/Server.app.dir/ThreadPool.cpp.o" \
-"CMakeFiles/Server.app.dir/WorkerThread.cpp.o" \
 "CMakeFiles/Server.app.dir/main.cpp.o"
 
 # External object files for target Server.app
 Server_app_EXTERNAL_OBJECTS =
 
-Server.app: CMakeFiles/Server.app.dir/Buffer.cpp.o
-Server.app: CMakeFiles/Server.app.dir/Channel.cpp.o
-Server.app: CMakeFiles/Server.app.dir/Dispatcher.cpp.o
-Server.app: CMakeFiles/Server.app.dir/EpollDispatcher.cpp.o
-Server.app: CMakeFiles/Server.app.dir/EventLoop.cpp.o
-Server.app: CMakeFiles/Server.app.dir/HttpRequest.cpp.o
-Server.app: CMakeFiles/Server.app.dir/HttpResponse.cpp.o
-Server.app: CMakeFiles/Server.app.dir/PollDispatcher.cpp.o
-Server.app: CMakeFiles/Server.app.dir/SelectDispatcher.cpp.o
-Server.app: CMakeFiles/Server.app.dir/TcpConnection.cpp.o
-Server.app: CMakeFiles/Server.app.dir/TcpServer.cpp.o
-Server.app: CMakeFiles/Server.app.dir/ThreadPool.cpp.o
-Server.app: CMakeFiles/Server.app.dir/WorkerThread.cpp.o
-Server.app: CMakeFiles/Server.app.dir/main.cpp.o
-Server.app: CMakeFiles/Server.app.dir/build.make
-Server.app: CMakeFiles/Server.app.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zxe/Documents/HttpReactorServer/ReactorHttp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable Server.app"
+bin/Server.app: CMakeFiles/Server.app.dir/main.cpp.o
+bin/Server.app: CMakeFiles/Server.app.dir/build.make
+bin/Server.app: tcp/libtcp.a
+bin/Server.app: http/libhttp.a
+bin/Server.app: reactor/libreactor.a
+bin/Server.app: thread/libthread.a
+bin/Server.app: common/libcommon.a
+bin/Server.app: CMakeFiles/Server.app.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zxe/Documents/HttpReactorServer/ReactorHttp/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable bin/Server.app"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Server.app.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-CMakeFiles/Server.app.dir/build: Server.app
+CMakeFiles/Server.app.dir/build: bin/Server.app
 .PHONY : CMakeFiles/Server.app.dir/build
 
 CMakeFiles/Server.app.dir/clean:
